@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link th:href="@{/css/base.css}" href="../static/css/base.css" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/index.css}" href="../static/css/index.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<div class = "jumbotron jumbotron-fluid">
+    <div>
+        <h1 class="welcomeText"><strong>Szakdolgozat</strong></h1></br>
+        <h3 class="welcomeText">Nyilvántartó rendszer</h3></br>
+
+        <div id="indexBtn">
+            <a class="btn btn-success btn-block" href="/login">Bejelentkezés</a>
+            <a class="btn btn-primary btn-block" href="#">Regisztráció</a>
+        </div>
+
+    </div>
+
+</div>
+<div class="container">
+    <div class="left">
+        <img th:src="@{/img/upload.svg}" src="../static/img/upload.svg" id="imgleft">
+    </div>
+    <div class="right">
+        <img th:src="@{/img/download.svg}" src="../static/img/download.svg" id="imgright">
+    </div>
+    <div class="center">
+        <img th:src="@{/img/document.svg}" src="../static/img/document.svg" id="imgcenter">
+    </div>
+
+</div>
+
+</body>
+</html>

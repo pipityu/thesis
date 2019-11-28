@@ -1,0 +1,17 @@
+body{
+    background-color: azure;
+}
+
+.Elfogadva{
+    color: forestgreen;
+    font-weight: bolder;
+}
+
+#request{
+    color: #007bff;
+    font-weight: bolder;
+
+}
+#requestResponse{
+    color: forestgreen;
+}
