@@ -1,0 +1,35 @@
+Annotációk: Jelezzük vele a Spring-nak hogy egy speciális kódrész és a szerint kezelje (@Component, @Controller stb)
+
+
+@SpringBootApplication:
+-@Configuration Containernek megmondja, hogy ez az osztály(bean) lesz a többi bean leírásnak a forrása(maga a jegyzet). Vagyis innen ered a "füzet tartalma" ahova feljegyzi a beaneket. Ez az osztály képes beleírni az app contextbe.
+-@ComponentScan Containernek jelzi, hogy a package-ben keresse meg az összes annotált osztály és jegyezze fel.
+		Érdemes a main osztályt tartalmazó package-be új package-eket létrehozni(controller, service stb) mert akkor azokat látni fogja a Spring nem kell külön megadni a packageket ahol keresni kell őket.
+-@EnableAutoConfiguration azt jelzi a Spring-nek, hogy próbáljon mindent magától beállítani. Ez minde a MTEA-INF mappán belül a spring.factories-fileban (konfigurációs leírás)
+megnézhetjük: jar file átírni zip mad kicsomagolni ott a spring-boot 1.x.x jart ugyan így . Ebben a spring.factories fileban egy csomó másik hivatkozás van.
+Ha nem akarunk mindent belőle akkor felülírható az @Enableautoconfig(exclude)
+Részletes bevilágítás: run config --debug
+
+
+@Controller - controller réteg jelzése ő fogadja a requesteket és irányít illetve adja a respons-t. 
+@RestController ő ha kap egy requestet akkor eldöntheti mit adjon vissza pl json html xml válaszként
+@RequestMapping("/") ő figyeli a hivatkozott path-t (URL-t) és a megadottakat elkapja és lekezeli.
+
+@Service - service réteg jelzése ő végzi a számításokat és üzleti logikát.
+
+@Scope (a Spring Bean-ek életciklusát határozza meg)
+Spring Beans: A Spring bean a Spring által(Container által) menedzselt objektumok. Annotációval vannak ellátva. Így bekerülnek az app contextbe(container)
+Spring Bean Scope:
+-singleton(egyetlen példány) pl RestController
+-prototype(mindig új példány)
+-request(requestenként új példány) minden http kérésnél
+-session(sessiononként egy új példány webáruházas példa. Ha ugyan az a valaki kéri a beant akkor ugyan azt a beant kapja vissza)
+Dependency Injection-kor a @scope alapján történik az injektálás
+
+
+
+Ha van egy POJO-nk és annotáció nélkül akarjuk injektálni
+akkor keresni kell egy olyan osztályt ami el van látva @Configuration-val(Bean forrás)
+és abban létrehozni @Bean annotációval egy függvényt ami visszaad egy POJO-t!
+
+A container az osztály nevével jegyzi be a beaneket. Ez megváltoztatható az annotációnál pl (@Service("myService"))

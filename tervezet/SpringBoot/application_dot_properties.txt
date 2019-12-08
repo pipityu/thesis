@@ -1,0 +1,16 @@
+Application.Properties: java kód kapcsolata a külvilággal.
+Vagyis nem a kódban vannak (hardcode-olva) pl az adatbázis belépés útvonal jelszó stb.
+Ekkor ha változtatás van akkor nem kell a teljes kódot újrafordítani tesztelni stb
+hanem elég csak ebben a .properties(config) file-ban megváltoztatni a dolgokat.
+Lehet a .jar mellett saját, lehet alapértelmezetten a jar-ban amit szintén változtathatok
+illetve lehet elrejtve a szerveren és csak a classpath ban adom meg hol van(felhasználó ne férjen hozzá)
+Lehet több is DE hierarchikusan vannak.
+
+Lényegében értékeket adhatunk át belőle a Beaneknek.
+a prop-ban: HomeController.msg = Szia
+pl Bean felett @Value(${"HomeController.msg"}) 
+
+Ezt csoportosan is megtehetjük ha sok változó van:
+propertiesben: xy.name = name   xy.age = 20
+POJO-n @Component és @ConfigurationProperties("prefix = xy") és az értékek nevei egyezzenek String name és int age;
+Majd a pom.xml ben jelezni kell a dependency-t ez automatikusan lehet intellij add...

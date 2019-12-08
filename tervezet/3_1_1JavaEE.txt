@@ -1,0 +1,23 @@
+Java EE
+A Java EE(Java Enterprise Edition) A Java SE tetejére épült. Biztosít API-kat és futási környezetet nagyméretű, rétegezett, skáéázható, és biztonságos hálózati alkalmazások fejlesztésére.
+A Java EE platform a Java Community Process(JCP)-n keresztül lett fejlesztve ami felelős minden Java technológiáért.
+https://javaee.github.io/tutorial/overview004.html
+https://javaee.github.io/tutorial/overview005.html
+(ezt még itt egy kicsit részletezni)
+
+
+API-k(néhány kiemelve)
+
+-Enterprise JavaBeans(EJB): Egy építőelem ami az üzleti logikát valósítja meg és használható önmagában vagy más EJB-ekkel.
+
+-Java Servlet Technology: A szerver-kliens, HTTP request-response model megvalósításáér felelős.
+
+-JavaServer Faces technology: Egy felhasználói interfész keretrendszer(UI framework) webalkalmazások készítéséhez.
+
+-JavaServer Pages (JSP) technology: Lehetővé teszi, hogy szerver oldali kódot helyezzünk el a szöveg alapú dokumentumba. (HTML kódba Java kódot).
+
+-JavaServer Pages Standard Tag Library: Egységbe zárja, beágyazza a JSP-knél gyakran használt funkciókat.
+
+-Java Persistence API: Java szabványokon alapuló megoldás a perzisztens tároláshoz. Ez egy Object Relational Mapping(ORM) megközelítést(technikát) alkalmaz az objektum orientált modelk és a relációs adatbázisok közötti szakadék áthidalására.
+
+-Dependency Injection: Annotációkat definiál amivel jelezhetjük az injektálandó osztályokat.

@@ -1,0 +1,67 @@
+WebApplication: Egy honlap dinamikus adatokkal.
+
+WebService: egy olyan szolgáltalás(szerver) ami xml,json stb válaszokat képes adni requestre. Kiszolgálja a webappot, vagy akár közvetlenül a pct vagy mobilt.
+de van hogy ezek a webappal kommunikálnak inkább. FONTOS -> Ő néz bele az adatbázisba! Nem pedig külön mindenki(pc, webapp stb).
+Pl külön webserwice a rendelés, regisztrálás, stb. ezek akár külön serveren is lehetnek így skálázható jobban.
+Egy webservice elérése SOAP(protokoll) vagy REST 
+
+MicroService: Egy adott feladatért létrehozott kis WebService. Fontos a skálázhatóság szempontjából és jól tesztelhető.
+
+
+
+SPRING: xml-ből szedi ki a bean-eket. az xml-ben meg lehet adni id-t át lehet adni property-t scope beállítás, lefuttatni függvényt init-kor és destroy.kor stb.
+SPRING BOOT: A Spring felé épült egyszerűsített keretrendszer. (pl nincs xml hanem annotációk)
+
+JavaBeans:
+	Alapvetően java osztályok amik eleget tesznek bizonyos konvencióknak.
+	Ilyenek, hogy az osztályok(nak)
+	-van publikus alapértelmezett paraméter nélküli konstruktora.
+	-az adattagjaikhoz biztosított setter és getter metódusok.
+	-implementálják a java.io.Serializable osztályt
+Spring Beans:
+    A Spring bean a Spring által(Container által) menedzselt objektumok. Annotációval vannak ellátva. Így bekerülnek az app contextbe(container)
+
+
+
+
+Loosely coupled(lazán összekapcsolt): 
+célja: Amit lehet külön egységre bontani és függetleníteni.
+pl, Kislány labda - kislány osztályba beleírjuk a labdát newlabda(); ->ROSSZ mert függőség lesz 
+és túl sok memória használat is(mindig egy labda is létrejön ha kell ha nem).
+ha 
+
+Container(Spring adja): Ö felügyeli a függőségeket. Azaz ha egy osztálynak kell egy másik majd ő kiosztja. (kislánynak ad egy labdát).
+Lehet, hogy 100 kislánynak elég 2 labda..pl
+
+Inversion of Control: Lényegében a Container működésének az elvét takarja.
+Felügyelet, kiosztás...
+Tudjuk nézni az életciklusát egy egy objektumnak stb
+
+Dependency: Maga a függőség ha egy osztály függ egy másiktól. (Használja a működésénél)
+
+Dependency Injection: IoC egy implementációja!!(nem csak ez létezik). 
+Lehetővé teszi a Containernek, hogy:
+-legyárthet objektumot
+-kézben tart objektumot(felügyel)
+-kioszthat(injektálhat) objektumot
+
+Setter/Getter vagy Konstruktor által! oszthat ki vagyis Injektálhat. pl Setterrel megkaphatja az objektumot.(vagy annak referenciáját a heap-be)
+Az injektálást név alapján teszi 
+
+Spring Boot Container(Application Context Container->játszótér):
+main()-ben  
+SpringApplication.run(xyApplication.class, args); egy függvény ami visszaadja a Containert!!
+A container egy string tömb ki is íratjatjuk.
+spring beaneket kezelhet csak amiket átadtunk/jeleztünk neki(annotáció)
+
+
+
+Profilok: 
+Célja: Különböző környezetben(kül szervereken pl develepoer server, test server, production server) máshogy akarjuk az alkalmazást használni
+properties-ben     spring.profiles.active=dev
+aztán az osztályban külön változóba kimentjük a választott profilt
+@Value(${"spring.profiles.active"})
+private String selectedProfile;
+majd getter setter neki
+utána külön properties file application-dev.properties   meg mondjuk application-prod.properties
+így könnyen injektálhatok különböző profil szerint adatokat. elég csak átírni az active profilt a fő .properties-ben

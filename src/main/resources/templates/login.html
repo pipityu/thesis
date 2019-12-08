@@ -9,8 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link th:href="@{/css/base.css}" href="../../../../../chatbot/src/main/resources/static/css/base.css" rel="stylesheet" type="text/css" />
-    <link th:href="@{/css/login.css}" href="../../../../../chatbot/src/main/resources/static/css/login.css" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/base.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div>
@@ -41,7 +41,7 @@
                     <div>
                         <div id="loginerror" th:if="${param.error}">
                             <p>
-                                <span>Érvénytelen jelszó vagy felhasználónév</span>
+                                <span>Érvénytelen felhasználónév vagy jelszó</span>
                             </p>
                         </div>
                         <div id="successLogOut" th:if="${param.logout}">
@@ -58,13 +58,13 @@
     </div>
     <div class="container">
         <div class="left">
-            <img th:src="@{/img/robot1.png}" src="../../../../../chatbot/src/main/resources/static/img/robot1.png" id="robot">
+            <img th:src="@{/img/robot1.png}" src="" id="robot">
         </div>
         <div class="msg">
-            <img th:src="@{/img/calendar.svg}" src="../../../../../chatbot/src/main/resources/static/img/calendar.svg" id="calendar">
+            <img th:src="@{/img/calendar.svg}" src="" id="calendar">
         </div>
         <div class="right">
-            <img th:src="@{/img/girl2.svg}" src="../../../../../chatbot/src/main/resources/static/img/girl2.svg" id="girl2">
+            <img th:src="@{/img/girl2.svg}" src="" id="girl2">
         </div>
 
     </div>

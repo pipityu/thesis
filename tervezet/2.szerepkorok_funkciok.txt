@@ -31,7 +31,7 @@ Ez mind jobb tervezhetõséget, idõpontok betartását( ez által határidõre való elk
 és rendezettséget biztosít a dolgozat írása során.
 
 Mérföldkõ teljesítésének benyújtása:
-Ha a hallgató úgy érzi elkészült az adott feladattal, akkor azt benyújthatja témavezetõjének felülvizsgálatra.
+Ha a hallgató úgy érzi, hogy elkészült az adott feladattal, akkor azt benyújthatja témavezetõjének felülvizsgálatra.
 
 Mérföldkõ elfogadása:
 A meghatároott feladat vagyis mérföldkõ ha a felülvizsgálat során megállja a helyét akkor azt
