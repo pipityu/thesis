@@ -1,0 +1,55 @@
+"Nem csak egy nyilvántartó rendszert akartam megvalósítani, hanem egy olyan rendszert
+ami az egész szakdolgozat készítést menedzselhetővé és ez által sikeresebbé teszi".
+
+
+Kell egy bejelentkezési felület(bejelentkeztetés)
+	-Felhasználói szerepkör
+	-Konzulens szerepkör
+	-Admin szerepkör
+
+
+
+Bejelentkezés után (felhasználó):
+
+	Témaválasztás
+		-Ha még nincs akkor választhat a konzulensekből és témáikból 1-et!
+		-Ha kérelmezett egyet akkor az elfogadásra vár státuszban lesz.
+
+	Ha már van választott
+		-Sáv a választott téma és konzulens nevére
+		-Alap adatok megjelenítése:
+			lépések(ezek sorban következő bejegyzések melyek validálás következtében lesz elérhető a következő lépés)
+			lépéshez tartozó gomb(ok)(validálás kérelme, dokumentum feltöltés(a lépéshez tartozó txt/olvasható lehetne online))
+			lépéshez tartozó megjegyzés(szükséges változtatások esetén)
+			lépéshez tartozó HATÁRIDŐ
+			feltöltött szakdolgozat(neve, terjedelme, ideje, verziószám stb)
+			szakdolgozathoz végleges validációs gomb(csak ha minden lépés valid)
+			konzultációk száma
+			konzultációs megjegyzés(az összes, vagyis az új megjegyzés beleíródik a fileba)
+			github link(program esetén)
+			ha sikerül akkor egy becslést megoldani az oldalszámra(betűméret alapján)
+			
+Bejelentkezés után (konzulens)
+	Témakiírás
+		-egy sima form	
+	
+	Kiírt témák megjelenítése
+		-Ha egy témára jelentkezik egy hallgató akkor az inaktívra vált(majd pedig a döntéstől függ)		
+		témákhoz tartozó alapadatok megjelenítése
+			-hozzá tartozó hallgató
+			-lépés hozzáadása
+			-lépések megjelenítése
+			-lépésekhez tartozó validálási gombok(aktívak ha van kérelem)
+			-"módosításra vissza" gombnál megjegyzés rovat
+			
+					
+
+Bejelentkezés után(adminisztrátor)
+	Beállíthatja a konzulens és hallgató e-mail és Neptun kód párosokat (DB-be)
+	A beállítottak listázása(DB-ből)
+	Változtathatja az általános info oldal tartalmát.(File-ból sima txt!)
+	
+Általános információk oldal mint egy nagy bejegyzés(időpontok , leírások, stb)
+
+
+Valószínűsített osztályok: Téma, Lépések, Szakdolgozat, Konzultáció, Konzulens, Hallgato, Admin, Megjegyzes, 

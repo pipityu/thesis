@@ -2,6 +2,7 @@ package com.uni.thesis.service;
 
 
 import com.uni.thesis.model.User;
+
 import com.uni.thesis.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
