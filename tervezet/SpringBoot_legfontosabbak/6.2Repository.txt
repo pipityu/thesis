@@ -1,0 +1,12 @@
+Repository
+Egy külön réteget képvisel.
+Egy logikai egység ami azért felelős, hogy a kódunk képes legyen kommunikálni az adatbázis entitásokkal.
+Egy híd képzódik le az adatbázis és a kódunk között és ehhez nem kell saját SQL utasítást írnunk hozzá.
+Használata során a saját repository interface-ünket kiterjesztjük egy már meglévő interface-ből.
+Legtöbbször a CrudRepository vagy JpaRepository-t használva melyeknél csak az egyedi azonosító(ID) típusát illetve az objektum típusát kell megadnunk.
+Így SQL írás nélkül biztosítottak számunkra az adatbázis műveletek a megadott objektum típussal kapcsolatban.
+Ilyenek például a mentés, keresés név alapján, törlés azonosító alapján és még sok más.
+Az előre biztosított metódusok felülírhatóak így saját igényeinkre tudjuk szabni őket illetve ezeken felül sajátokat is tudunk létrehozni.
+Az egész hátterében a JDBC(Java Database Connectivity) fog dolgozni ami így számunkra elfedére kerül.
+
+MVC_Service_Repo KÉP

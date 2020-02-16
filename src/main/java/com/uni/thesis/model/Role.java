@@ -9,18 +9,21 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int roleid;
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users;
+    @ManyToMany(mappedBy = "studentRoles")
+    private List<Student> students;
 
-    public int getId() {
-        return id;
+    @ManyToMany(mappedBy = "consultantRoles")
+    private List<Consultant> consultants;
+
+    public int getRoleid() {
+        return roleid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRoleid(int roleid) {
+        this.roleid = roleid;
     }
 
     public String getName() {

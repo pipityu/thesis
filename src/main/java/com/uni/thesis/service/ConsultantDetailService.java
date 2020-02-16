@@ -1,16 +1,15 @@
 package com.uni.thesis.service;
 
-
-import com.uni.thesis.model.User;
-
-import com.uni.thesis.repository.UserRepository;
+import com.uni.thesis.model.Consultant;
+import com.uni.thesis.model.Student;
+import com.uni.thesis.repository.ConsultantRepository;
+import com.uni.thesis.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,14 +17,14 @@ import java.util.Collection;
 
 @Service
 @Transactional
-public class MyUserDetailsService implements UserDetailsService {
-
+public class ConsultantDetailService implements UserDetailsService {
     @Autowired
-    UserRepository userRepository;
+    ConsultantRepository consultantRepository;
 
     @Override  //Felhasználó adatai Spring Securitynek
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findUserByUsername(username)
+        //Ez betölt egy user-t aminek a role-jából tudjuk, hogy milyen userről van szó. Ez alapján tudjuk a lekéréseket megoldani majd
+        Consultant user = consultantRepository.findConsultantByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Username: " + username + " not found"));
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
@@ -33,11 +32,9 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     //Jogok kikeresése
-    private static Collection<? extends GrantedAuthority> getAuthorities(User user) {
-        String[] userRoles = user.getRoles().stream().map((role) -> role.getName()).toArray(String[]::new);
+    private static Collection<? extends GrantedAuthority> getAuthorities(Consultant user) {
+        String[] userRoles = user.getConsultantRoles().stream().map((role) -> role.getName()).toArray(String[]::new); // egy tömbbe rakja a role-okat
         Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles);
         return authorities;
     }
-
-
 }

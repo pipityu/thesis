@@ -20,23 +20,32 @@
         <h3 class="welcomeText">Nyilvántartó rendszer</h3></br>
 
         <div id="indexBtn">
-            <a class="btn btn-success btn-block" href="/login">Bejelentkezés</a>
+            <a class="btn btn-success btn-block" href="/consultantlogin">Konzulens</a>
+            <a class="btn btn-success btn-block" href="/studentlogin">Hallgató</a>
             <a class="btn btn-primary btn-block" href="#">Regisztráció</a>
+            <div id="successLogOut" th:if="${param.logout}">
+                <p>
+                    <span>Sikeres kijelentkezés</span>
+                </p>
+            </div>
         </div>
+
 
     </div>
 
 </div>
 <div class="container">
-    <div class="left">
-        <img th:src="@{/img/upload.svg}" src="../static/img/upload.svg" id="imgleft">
-    </div>
-    <div class="right">
-        <img th:src="@{/img/download.svg}" src="../static/img/download.svg" id="imgright">
-    </div>
+    <!--        <div class="left">
+            <img th:src="@{/img/document.svg}" src="">
+        </div>-->
     <div class="center">
-        <img th:src="@{/img/document.svg}" src="../static/img/document.svg" id="imgcenter">
+        <img th:src="@{/img/me_logo.png}" src="">
     </div>
+    <!--
+            <div class="right">
+                <img th:src="@{/img/greenkey.svg}" src="">
+            </div>
+    -->
 
 </div>
 

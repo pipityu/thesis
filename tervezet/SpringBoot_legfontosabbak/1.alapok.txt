@@ -1,3 +1,5 @@
+
+
 WebApplication: Egy honlap dinamikus adatokkal.
 
 WebService: egy olyan szolgáltalás(szerver) ami xml,json stb válaszokat képes adni requestre. Kiszolgálja a webappot, vagy akár közvetlenül a pct vagy mobilt.
@@ -8,9 +10,8 @@ Egy webservice elérése SOAP(protokoll) vagy REST
 MicroService: Egy adott feladatért létrehozott kis WebService. Fontos a skálázhatóság szempontjából és jól tesztelhető.
 
 
-
 SPRING: xml-ből szedi ki a bean-eket. az xml-ben meg lehet adni id-t át lehet adni property-t scope beállítás, lefuttatni függvényt init-kor és destroy.kor stb.
-SPRING BOOT: A Spring felé épült egyszerűsített keretrendszer. (pl nincs xml hanem annotációk)
+SPRING BOOT: A Spring felé épült egyszerűsített keretrendszer. (pl nincs xml hanem annotációk) Ad egy alap beállítást és összeválogathatóak benne a modulok.
 
 JavaBeans:
 	Alapvetően java osztályok amik eleget tesznek bizonyos konvencióknak.

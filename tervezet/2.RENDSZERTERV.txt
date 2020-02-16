@@ -1,0 +1,50 @@
+RENDSZERTERV (kb 5 oldal)
+
+
+ER model
+
+Relációs adatmodel
+
+Osztály diagram
+
+
+
+	Osztályok és metódusaik:
+	-Konzulens(User)
+		-getter: Biztonságos hozáférhetőséget biztosít az osztáy adattagjaihoz.
+		-setter: Az osztály adattagjai állíthatóak be a settereken keresztül.
+		-createTopic(): A konzulenshez tartozó téma kiírására, létrehozására szolgáló metódus.
+		-deleteTopic(): A konzulenshez tartozó téma törlésére szolgáló metódus.
+		-acceptStudent(): Elfogadja a hallgató jelentkezését az adott témára.
+		-declineStudent():Elutasítja a hallgató jelentkezését az adott témára.
+		-acceptStep(): A hallgató által elkészített és kérelmezett lépés elfogadása(kommenttel együtt).
+		-declineStep(): A hallgató által elkészített és kérelmezett lépés visszautasítása(kommenttel együtt).
+		-acceptThesis():Szakdolgozat elfogadása, ha a hallgató benyújtotta a kérelmet.
+		-declineThesis():Szakdolgozat visszautasítása, ha az nem megfelelő vagy javításra szorul valamiben.
+	-Student(user):
+		-getter: Biztonságos hozáférhetőséget biztosít az osztáy adattagjaihoz.
+		-setter: Az osztály adattagjai állíthatóak be a settereken keresztül.
+		-chooseTopic(topicId): Kérelem az adott téma kiválasztására a konzulens felé(komment a kérelemben ki,miért, mit tud stb)
+		-changeTopic(fromId, toId):Választott téma megváltoztatása. Egy másik választása.
+		-stepAcceptRequest(): A témához tartozó aktuális lépés beküldése elfogadásra.
+		-uploadThesis(): Szakdolgozat feltöltése adatbázisba.
+		-sendThesisAccept(): Szakdolgozat elküldése elfogadásra.
+	-Topic
+		-getter: Biztonságos hozáférhetőséget biztosít az osztáy adattagjaihoz.
+		-setter: Az osztály adattagjai állíthatóak be a settereken keresztül.
+		-createSteps(topicId): Lépések létrehozása a megadott témához.
+		-deleteSteps(topicId): Lépések törlése a meadott témánál.
+	-Step
+		-getter: Biztonságos hozáférhetőséget biztosít az osztáy adattagjaihoz.
+		-setter: Az osztály adattagjai állíthatóak be a settereken keresztül.
+		-
+	-Consultation
+		-getter: Biztonságos hozáférhetőséget biztosít az osztáy adattagjaihoz.
+		-setter: Az osztály adattagjai állíthatóak be a settereken keresztül.
+	-Comment
+		-getter: Biztonságos hozáférhetőséget biztosít az osztáy adattagjaihoz.
+		-setter: Az osztály adattagjai állíthatóak be a settereken keresztül.
+	-Thesis
+		-getter: Biztonságos hozáférhetőséget biztosít az osztáy adattagjaihoz.
+		-setter: Az osztály adattagjai állíthatóak be a settereken keresztül.
+	

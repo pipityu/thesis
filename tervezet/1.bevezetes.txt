@@ -1,9 +1,11 @@
-1. Lépés:
 
-BEVEZETÕ
+
+BEVEZETÕ (kb 2 oldal)
+
 Szakdolgozatom az Általános Informatika Tanszék számára készült.
 Jelenleg nincs olyan komplex rendszer ami a szakdolgozatok nyilvántartására és ellenõrzésére illetve nyomon követésére
-megfelelõ és alkalmas lenne teljes egészében. 
+megfelelõ és alkalmas lenne teljes egészében.
+Számomra is nehézséget okozott, hogy a szakdolgozatomat megfelelõ rendszer támogatása nélkül készítsem el.
 A webes nyilvántartó rendszer mindazok számára hasznos
 akik szakdolgozatukat készítik és egy egységesített rendszerben szeretnék tárolni. Szintén hasznos a témavezetõk számára,
 akik nyomon tudják követni a szakdolgozat készítését. A nyilvántartó rendszer minden olyan fontos funkciót tartalmaz

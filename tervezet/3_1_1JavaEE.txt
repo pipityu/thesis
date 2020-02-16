@@ -1,4 +1,4 @@
-Java EE
+Java EE (kb 1 oldal)
 A Java EE(Java Enterprise Edition) A Java SE tetejére épült. Biztosít API-kat és futási környezetet nagyméretű, rétegezett, skáéázható, és biztonságos hálózati alkalmazások fejlesztésére.
 A Java EE platform a Java Community Process(JCP)-n keresztül lett fejlesztve ami felelős minden Java technológiáért.
 https://javaee.github.io/tutorial/overview004.html

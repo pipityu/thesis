@@ -1,0 +1,71 @@
+
+
+RELÁCIÓS ADATMODELL
+
+Egészen az 1980-as évektől kezdődően az egyik legelterjedtebb adatmodell a relációs adatmodell.
+A relációs modellben az adatok táblázatok soraiban úgynevezett rekordokban ábrázolják.
+Az egyes adategységek között nincsenek előre megadott kapcsolatok.
+Ha szükség van kapcsolat létrehozására, akkor azt a kellő adatok többszörös tárolásával oldják meg.
+A relációs adatmodell napjaink legelterjedtebb adatmodellje.
+
+-----------https://www.inf.u-szeged.hu/~gnemeth/adatbgyak/exe/EK_diagrambol_relaciosema/relcis_adatmodell.html---------------
+
+Relációs adatbázissémának (vagy relációsémának) nevezünk egy attribútumhalmazt, amelyhez név tartozik: formálisan R(A1,...,An),
+ahol R a relációséma neve, A1, ... An, pedig az attribútumhalmaza. Minden attribútumhoz tartozik egy értékkészlet,
+amelyből felveheti értékeit. Az i-edik attribútum értékkészletét dom(Ai) jelöli.
+Az R(A1, ..., An) séma feletti T tábla az alábbi módon írható le: , vagyis nem más, mint az értékkészletek Descates-szorzatainak részhalmaza.
+Másképpen mondva, ha vesszük az attribútumoknak az összes lehetséges értékét, és ezeket minden lehetséges módon párosítjuk,
+ezen rekord-halmazból kerülnek ki a T tábla sorai.
+
+Azt a attribútumhalmazt,
+amelyen a T tábla minden sora különbözik szuperkulcsnak nevezzük.
+A K attribútumhalmazt kulcsnak nevezzük, ha minimális szuperkulcs,
+vagyis bármelyik attribútumot elvéve belőle, már lennének azonos sorok a tábla ezen attribútumhalmazán.
+Egy relációsémában több kulcs is előfordulhat, vagyis több attribútumhalmazt is ki tudunk jelölni kulcsként.
+Ha több kulcs is meghatározható a sémában, akkor kijelöljük az egyiket, amelyet elsődleges kulcsnak nevezünk.
+Ha egy attribútum alkotja kulcsot azt egyszerű kulcsnak, ha több attribútum alkotja a kulcsot, azt összetett kulcsnak nevezzük.
+
+Azokat az attribútumokat,
+amelyek egy másik sémának az elsődleges kulcsára hivatkoznak külső kulcsnak nevezzük.
+A relációsémához hozzátartoznak a kulcsfeltétel és a külső kulcsfeltétel is.
+
+
+AMIÉRT VÁLASZTOTTAM:
+Mint mindennek természetesen a MySQL-nek is vannak előnyei és hátrányai, melyeket érdemes figyelembe venni a fejlesztés során.
+Hasonlóképpen tettem én is, néhány fontosabb szempontot illetve tulajdonságot kiemelve mindkét oldalról.
+
+
+PRO
+https://www.javatpoint.com/mysql-features
+MySQL Tulajdonságai
+
+    Ez egy Relational Database Management System (RDBMS): A MySQL egy relációs-adatbázis kezelő rendszer.
+    Könnyen használható: A MySQL-t könnyű kezelni, használni. Elegendő alapszintű SQL tudással rendelkezni a használatához és működtetéséhez.
+    Biztonságos: A MySQL szilárd biztonsági rétegből áll ami védelmet biztosít az érzékeny adatok védelme érdekében. A jelszavak pedig titkosítottak.
+    Kliens/szerver achitektúra: Többfelhasználós, többszálú.
+    Ingyenesség: A MySQL teljesen ingyenesen letölthető a hivatalos weboldaláról és használható.
+    Skálázhatóság: Képes szinte bármekkora adathalmazt kezelni, egészen 50 milliót is vagy többet. Az alapértelmezett fájlméret 4GB, azonban ez a méret egészen 8TB-ig növelhető.
+    Kompatibilitás: A legtöbb operációs rendszerrel kompatibilis
+    Megengedett a roll-back: A MySQL lehetőséget ad arra, hogy a tranzakciókon végrehajthatóak legyenek a roll back, commit, és recovery
+    Magas teljesítmény: Gyors, megbízható és olcsó, köszönhetően a sajátos tároló architektúrának.
+    Nagy rugalmasság: A MySQL nagy számú beágyazott alkalmazást támogat ami nagyon rugalmassá teszi.	
+    Eredményesség: A felhasználók kiválthatnak, tárolhatnak procedúrákat és "view"-okat melyek nagyobb eredményességet adnak a fejlesztőknak.
+
+CON
+Természetesen a MySQL-nek is vannak hátrányai:
+
+    MySQL 5.0 alatti verziók nem támogatják a ROLE, COMMIT és a tárolt procedúrákat.
+    A túl nagy adatbázis méret esetén már nem túl hatékony. Képes kezelni de nem túl eredményesen.
+    Azt mondják, hogy nincs elég jó fejlesztési és hibakeresési eszközökkel ellátva.
+
+
+MYSQL WORKBENCH:
+https://www.mysql.com/products/workbench/
+A MySQL Workbench egy egységesített vizualizációs eszköz adatbázis építók, fejlesztők és adatbázis adminisztrátorok számára.
+A Workbench biztosítja az adatmodellezést, SQL fejlesztést, átfogó adminisztrációs eszközöket a szerver konfigurációhoz,
+felhasználó adminisztráláshoz, biztonsági mentésekhez, és még sok máshoz. Elérhető mind Windows, Linux és OS X-en is.
+
+KÉÉÉÉP
+
+Ezek függvényében számomra, a projekthez megfelelő választásnak bizonyult a MySQL és hozzá a MySQL Workbench,
+könnyen kezelhetővé és átláthatóvá tette az adatbázist.

@@ -1,0 +1,43 @@
+Spring: A Spring keretrendszer egyszerű Dependency Injection konténerként indult,
+majd egy teljes ökoszisztémává nőtte ki magát. A Spring keretrendszer egy könnyed megoldás vállalati használatra 
+készülő alkalmazások fejlesztésére. Moduláris felépítésű így lehetőséget ad arra, hogy csak a szükséges modulokat emeljük be
+az alkalmazásunkba. Az xml alapú konfiguráció viszonylag bonyolult.
+SPRING KÉP
+XMLCONFIG KÉP
+
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html#getting-started-introducing-spring-boot
+A Spring Boot egyszerűvé teszi az önálló és minőségi alkalmazások elkészítését.
+A legtöbb Spring Boot alkalmazásnak csak minimális Spring konfugurációt szükséges alkalmaznia. 
+Így sokkal gyorsabban lehetséges az alkalmazás fejlesztése.
+Nagy projektek számára biztosítottak a beágyazott szerverek, biztonsági funkciók, ellenőrzések, külső szerverek konfigurálása stb.
+Az xml konfiguráció teljes mértékben elhagyható.
+
+Rendszerkövetelményei(Spring Boot 2.2.4.RELEASE):
+-minimum Java 8
+-Spring Framework 5.2.3.RELEASE vagy újabb kiadás
+-Project menedzselő: Maven 3.3+/Gradle 5.x vagy 6.x
+-(Beágyazott) Szervlet konténerek: Tomcat 9.0/Jetty 9.4/Undertow 2.0
+-De bármilyen konténerre kitelepíthető az alkalmazás ami kompatibilis minimum a Servlet 3.1-el.
+
+A Spring Boot használata nem igényel semmilyen speciális eszközt vagy hagyományos
+értelemben vett telepítést. Egyszerűen egy szabvány/alapértelmezett java könyvtárként használható.
+Használhatjuk a Maven projektmenedzselőt is, ami a pom.xml(Project Object Model) fájlon keresztül tudja mely függőségekre(dependeny) van szükség.
+A pom file ezen kívül más a projekt-el kapcsolatos információkat és konfigurációs beállításokat is tartalmaz.
+Ez a file nagyon fontos szerepet tölt be, ez "építi fel" a projektet a benne megadott adatok/információk által.
+
+Megadhatóak "Starter"-ek amik úgynevezett függőségi leírókészletek. A különböző technológiákhoz a mintakódot és függőségeket egyben tartalmazzák,
+nem kell nekünk egyesével megadni a függőségeket. Például ha a JPA-t szeretnénk használni a Spring-el elegendő a pring-boot-starter-data-jpa mint dependency-t beemelnönk.
+Sok ilyen Starter van, közülük néhányat kiemelve melyeket én is használtam:
+spring-boot-starter-parent: projekt alap konfigurációja(java 1.8 alap fordító/utf-8 kódolás/dependency menedzselés/stb)
+spring-boot-starter: Core starter, including auto-configuration support, logging and YAML
+spring-boot-starter-data-jpa: Starter for using Spring Data JPA with Hibernate
+spring-boot-starter-thymeleaf: Starter for building MVC web applications using Thymeleaf views
+spring-boot-starter-web: Starter for building web, including RESTful, applications using Spring MVC. Uses Tomcat as the default embedded container
+stb.
+SPRING BOOT KÉP
+
+Amikor egy projektet készítünk nagyon kényelmes módja annak, hogy néhány alap beállítást és függődégeket megadjunk a Spring Initializr.
+https://start.spring.io/ érhető el. Ez elkészíti nekünk a projekt alapját és a pom.xml fájlt.
+INITIALIZR KÉP THESIS!
+

@@ -1,0 +1,19 @@
+ORM(Object Relational Mapping)
+Lényege, hoy az adattárolás és adatáramlás az Objektum Orientált nyelvek esetén úgy történhessen,
+hogy az objektumok átalakíthatóak az adatbázis tábláinak egyes soraivá vagyis rekordjaivá.
+JDBC-esetében ezt anuálisan végezzük.
+
+
+JPA(Java Persistance API)
+A Java Persistance API egy INTERFACE SPECIFIKÁCIÓ, mely leírja az adatok menedzselését a Java objektumok(POJO)
+és egy relációs adatbázis között. Egy Interface ami meghatározza és leírja pontosan, hogy mi az aminek meg kell felelnie ahhoz,
+hogy végbemehessen automatikusan az ORM.
+JPA használatánál Entitásokat hozunk létre, ezek annotált Java osztályok, melyek az adatbázis tábláit képezik le.
+Az EntityManager kezeli az entitások életciklusát a Persistance Context ben.
+*POJO: Plain Old Java Object, vagyis általános, "jó öreg java objektum".
+
+
+HIBERNATE
+A Hibernate a JPA egy konkrét implementációja.
+Van saját lekérdező nyelve a HQL(Hibernate Query Language), így adatbázisoktól fügetlen lekérdezéseket írhatunk.
+Illetve támogatja a natív SQL lekérdezések írását is.

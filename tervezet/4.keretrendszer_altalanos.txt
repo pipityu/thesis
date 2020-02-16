@@ -1,7 +1,11 @@
+KERETRENDSZER ÁLTALÁNOSAN (kb 1 oldal)
+
 A projektemben különböző technológiákat használtam, ezek sokszor egymásra épülnek és sokszor elengedhetetlenek a megfelelő működés érdekében. 
 Sok olyan technológia is van melyek nem láthatóak a fejlett keretrendszerek miatt.
 A keretrendszerek egyik legfontosabb haszna az, hogy olyan megoldásokat biztosítson a programozó/fejlesztő számára amivel minél több időt tud tisztán,
 az adott feladat produktív, tényleges részével foglalkozni.
+A keretrendszerek legfontosabb tulajdonsága, hogy a fejlesztők által legtöbbet használt programrészek már előre megírt formában egyszerűen elérhetőek.
+Ezek a programrészek, mindig a legjobb megoldásra törekednek és fejlesztik őket így bátran és könnyedén használhatóak a fejlesztők által.
 Azaz, a programozó számára kevesebbet kell foglalkozni például a konfigurációs beállításokkal az egyes komponensekhez mert azok a keretrendszer által már biztosítottak.
 Esetleg csak néhány egyszerű módosítással elérhetőek olyan funkciók melyek
 egyébként nagyon sok fejlesztési időt igényelnének ha a programozó azt teljesen az elejétől kellene elvégeznie.

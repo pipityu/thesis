@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-
-    <title>Kérvényező</title>
+    <title>Konzulensi oldal</title>
     <meta charset="utf-8" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -13,37 +12,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" th:src="@{/static/js/userhome.js}"></script>
-    <!-- ManyChat -->
-    <script src="//widget.manychat.com/105197630914532.js" async="async"></script>
 
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link th:href="@{/css/base.css}" href="../../../../../chatbot/src/main/resources/static/css/base.css" rel="stylesheet" type="text/css" />
     <link th:href="@{/css/home.css}" href="../../../../../chatbot/src/main/resources/static/css/home.css" rel="stylesheet" type="text/css" />
-
 </head>
 <body>
 <div>
-    <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="container-fluid">
-            <a th:href="@{/request/check}" class="navbar-brand font-weight-bolder">UCCBOT</a>
+            <a th:href="@{/consultanthome}" class="navbar-brand font-weight-bolder"><strong>THESISMGR: </strong><span id="neptun" sec:authentication="principal.username"></span></a>
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="#">link1</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">link2</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">link3</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Témáim</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Aktív témák</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Téma kiírás</a></li>
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                     <li>
-                        <a class="nav-link" th:href="@{/admin/home}">Admin Oldal</a>
+                        <a class="nav-link" th:href="@{/admin/home}">Profil</a>
                     </li>
                 </div>
-                <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Kijelentkezés</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a class=" btn dropdown-toggle nav-link" id="dropdown" data-toggle="dropdown">Személyes</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Profil</a>
-                        <a class="dropdown-item" href="#">link</a>
-                        <a class="dropdown-item" href="#">link</a>
+                        <a class="dropdown-item" href="#">Adatok</a>
+                        <a class="dropdown-item" href="/consultant_logout">Kijelentkezés</a>
+                        <!--<form th:action="@{/consultant_logout}" method="post">
+                            <button type="submit">Kijelentkezés</button>
+                        </form>-->
                     </div>
                 </li>
             </ul>
@@ -51,43 +48,33 @@
     </nav>
 </div>
 
-<div>
-    <p>
-    <h2>Bejelentkezve mint: <strong><span sec:authentication="principal.username"></span></strong></h2>
-    </p>
-</div>
 <hr>
 <div id="request" class="d-flex justify-content-center">
-    <h3>Kérelem</h3>
+    <h3>Kiírt témáim</h3>
 </div>
 <div>
-    <table class="table table-hover">
+    <table class="table table-hover topicTable">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Felhasználónév</th>
-                <th>Név</th>
-                <th>Típus</th>
-                <th>Kezdeti nap</th>
-                <th>Utolsó nap</th>
+                <th>Téma címe</th>
                 <th>Státusz</th>
-                <div sec:authorize="hasRole('ROLE_ADMIN')">
-                    <th>Válasz</th>
-                    <th>ChatID</th>
-                </div>
-
-
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-        <th:block th:each="request: ${allRequest}">
+      <th:block th:each="topic: ${allTopic}">
             <tr>
-                <td th:text="${request.getId()}"></td>
-                <td th:text="${request.getUsername()}"></td>
-                <td th:text="${request.getName()}"></td>
-                <td th:text="${request.getType()}"></td>
-                <td th:text="${request.getStart_date()}"></td>
-                <td th:text="${request.getEnd_date()}"></td>
+                <td th:text="${topic.getName()}"></td>
+                <td>STÁTUSZ</td>
+                <td><button th:href="@{/choosetopic(topicid=${topic.getTopicid()})}" class="btn btn-primary topicButton">Részletek</button></td>
+                <td><button class="btn btn-info topicButton">Módosítás</button></td>
+                <td><button class="btn btn-danger topicButton">Törlés</button></td>
+
+            </tr>
+<!--
+
                 <td th:class="${request.getStatus()}" th:text="${request.getStatus()}"></td>
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                     <td>
@@ -99,21 +86,15 @@
                     </td>
                     <td th:text="${request.getManychat_id()}"></td>
                 </div>
-            </tr>
+                -->
+
         </th:block>
         </tbody>
     </table>
-    <div class="d-flex justify-content-start">
-        <div class="p-1">
-            <a th:href="@{/request/send}"><button onclick="responseText()" class="btn btn-success">Kérelem beküldése</button></a>
-        </div>
-        <div class="p-1">
-            <a th:href="@{/request/check}"><button class="btn btn-primary">Frissítés</button></a>
-        </div>
-    </div>
-    <div class="homeText">
-        <p id="requestResponse" th:text="${saved}"></p>
-    </div>
+
+    <!--<div class="topicDescription" th:text="${allTopic[${topicid}].getDescription()}"></div>-->
+    <div class="topicDescription" th:text="${allTopic[0].getDescription()}"></div>
+
 </div>
 </body>
 </html>
