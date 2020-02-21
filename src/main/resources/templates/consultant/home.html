@@ -11,36 +11,33 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" th:src="@{/static/js/userhome.js}"></script>
+
+    <!--<link th:href="@{/static/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+    <script th:src="@{/static/js/jquery.js}"></script>
+    <script th:src="@{/static/js/popper.js}"></script>
+    <script th:src="@{/static/js/bootstrap.js}"></script>
+    <script th:src="@{/js/test.js}"></script>-->
 
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link th:href="@{/css/base.css}" href="../../../../../chatbot/src/main/resources/static/css/base.css" rel="stylesheet" type="text/css" />
-    <link th:href="@{/css/home.css}" href="../../../../../chatbot/src/main/resources/static/css/home.css" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/base.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/home.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div>
-    <nav class="navbar navbar-expand-sm navbar-dark">
+  <!--  <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="container-fluid">
             <a th:href="@{/consultanthome}" class="navbar-brand font-weight-bolder"><strong>THESISMGR: </strong><span id="neptun" sec:authentication="principal.username"></span></a>
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="#">Témáim</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Aktív témák</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Téma kiírás</a></li>
-                <div sec:authorize="hasRole('ROLE_ADMIN')">
-                    <li>
-                        <a class="nav-link" th:href="@{/admin/home}">Profil</a>
-                    </li>
-                </div>
+                <li class="nav-item"><a class="nav-link" href="#">Összes téma</a></li>
+                <li class="nav-item"><a class="nav-link" href="/createtopic">Téma kiírás</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a class=" btn dropdown-toggle nav-link" id="dropdown" data-toggle="dropdown">Személyes</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Adatok</a>
                         <a class="dropdown-item" href="/consultant_logout">Kijelentkezés</a>
-                        <!--<form th:action="@{/consultant_logout}" method="post">
-                            <button type="submit">Kijelentkezés</button>
-                        </form>-->
                     </div>
                 </li>
             </ul>
@@ -73,7 +70,7 @@
                 <td><button class="btn btn-danger topicButton">Törlés</button></td>
 
             </tr>
-<!--
+&lt;!&ndash;
 
                 <td th:class="${request.getStatus()}" th:text="${request.getStatus()}"></td>
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
@@ -86,15 +83,15 @@
                     </td>
                     <td th:text="${request.getManychat_id()}"></td>
                 </div>
-                -->
+                &ndash;&gt;
 
         </th:block>
         </tbody>
     </table>
 
-    <!--<div class="topicDescription" th:text="${allTopic[${topicid}].getDescription()}"></div>-->
-    <div class="topicDescription" th:text="${allTopic[0].getDescription()}"></div>
+    &lt;!&ndash;<div class="topicDescription" th:text="${allTopic[${topicid}].getDescription()}"></div>&ndash;&gt;
+    <div class="topicDescription" th:text="${allTopic[2].getDescription()}"></div>
 
-</div>
+</div>-->
 </body>
 </html>

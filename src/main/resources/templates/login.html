@@ -5,10 +5,16 @@
 <head>
     <meta charset="utf-8">
     <title>Bejelentkezés</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+
+    <link th:href="@{/css/bootstrap.css}" href="../static/css/base.css" rel="stylesheet" type="text/css" />
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/popper.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+
     <link th:href="@{/css/base.css}" rel="stylesheet" type="text/css" />
     <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css" />
 </head>
@@ -33,9 +39,6 @@
                         <button class="btn btn-success" name="login" type="submit">Bejelentkezés</button>
                         <a href="#"><button type="button" class="btn btn-info" name="forgotpassword">Elfelejtett jelszó</button></a>
                         <a href="/"><button type="button" class="btn btn-info" name="forgotpassword">Vissza</button></a>
-                    </div>
-                    <div>
-
                     </div>
                 </div>
                 <div>
