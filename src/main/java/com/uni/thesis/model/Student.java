@@ -87,12 +87,4 @@ public class Student{
         this.password = password;
     }
 
-    public List<Role> getSroles() {
-        return studentRoles;
-    }
-
-    public void setSroles(List<Role> sroles) {
-        this.studentRoles = sroles;
-    }
-    //one-to-one thesis
 }

@@ -17,8 +17,8 @@ public class TopicService {
     @Autowired
     TopicRepository topicRepository;
 
-    public List<Topic> getAllTopicWithConsultantId(){
-        return topicRepository.findAllByConsultantId();
+    public List<Topic> getAllTopicWithConsultantId(int consultantid){
+        return topicRepository.findAllByConsultantId(consultantid);
     }
 
 }

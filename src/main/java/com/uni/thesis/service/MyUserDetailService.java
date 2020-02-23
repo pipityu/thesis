@@ -18,7 +18,7 @@ import java.util.Collection;
 
 @Service
 @Transactional
-public class ConsultantDetailService implements UserDetailsService {
+public class MyUserDetailService implements UserDetailsService {
     @Autowired
     ConsultantRepository consultantRepository;
 
@@ -51,5 +51,18 @@ public class ConsultantDetailService implements UserDetailsService {
         String[] userRoles = user.getRoles().stream().map((role) -> role.getName()).toArray(String[]::new); // egy tömbbe rakja a role-okat
         Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles);
         return authorities;
+    }
+
+    //Felhasználó adati mert Controllerhez
+    public Consultant loadConsultant(String userName) throws UsernameNotFoundException{
+        Consultant consultant = consultantRepository.findConsultantByUsername(userName)
+                .orElseThrow(() -> new UsernameNotFoundException("Email: " + userName + " not found"));
+        return consultant;
+    }
+
+    public Student loadStudent(String userName) throws UsernameNotFoundException{
+        Student student = studentRepository.findStudentByUsername(userName)
+                .orElseThrow(() -> new UsernameNotFoundException("Email: " + userName + " not found"));
+        return student;
     }
 }

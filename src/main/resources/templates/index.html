@@ -5,10 +5,15 @@
     <meta charset="utf-8">
     <title>Home</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+
+    <link th:href="@{/css/bootstrap.css}" href="../static/css/base.css" rel="stylesheet" type="text/css" />
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/popper.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
     <link th:href="@{/css/base.css}" href="../static/css/base.css" rel="stylesheet" type="text/css" />
     <link th:href="@{/css/index.css}" href="../static/css/index.css" rel="stylesheet" type="text/css" />
 
@@ -20,8 +25,8 @@
         <h3 class="welcomeText">Nyilvántartó rendszer</h3></br>
 
         <div id="indexBtn">
-            <a class="btn btn-success btn-block" href="/consultantlogin">Konzulens</a>
-            <a class="btn btn-success btn-block" href="/studentlogin">Hallgató</a>
+            <a class="btn btn-success btn-block" th:href="@{/login}" href="/login">Konzulens</a>
+            <a class="btn btn-success btn-block" href="#">Hallgató</a>
             <a class="btn btn-primary btn-block" href="#">Regisztráció</a>
             <div id="successLogOut" th:if="${param.logout}">
                 <p>
