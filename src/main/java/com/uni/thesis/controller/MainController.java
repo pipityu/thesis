@@ -12,7 +12,11 @@ public class MainController {
         return "index";
     }
     @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
-    public String clogin() {
+    public String login() {
         return "login";
+    }
+    @GetMapping("/informations")
+    public String informations(){
+        return "/informations";
     }
 }

@@ -13,6 +13,16 @@ public class Topic {
     private Consultant consultantid;
     private String name;
     private String description;
+    private String status;
+
+    public Topic(){}
+
+    public Topic(int topicid, Consultant consultant, String name, String description){
+        this.topicid = topicid;
+        this.consultantid = consultant;
+        this.name = name;
+        this.description = description;
+    }
 
     public int getTopicid() {
         return topicid;
@@ -44,5 +54,13 @@ public class Topic {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

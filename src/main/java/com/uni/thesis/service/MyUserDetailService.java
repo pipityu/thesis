@@ -29,10 +29,13 @@ public class MyUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Consultant consultant = null;
         Student student = null;
+
         if(consultantRepository.findConsultantByUsername(username).isPresent()){
             consultant = consultantRepository.findConsultantByUsername(username).get();
         }else if(studentRepository.findStudentByUsername(username).isPresent()){
             student = studentRepository.findStudentByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username: " + username + " not found"));
+        }else{
+            throw new UsernameNotFoundException("Nincs felhasználó ezzel a névvel: " + username);
         }
         return (consultant==null)?new org.springframework.security.core.userdetails.User(student.getUsername(), student.getPassword(),
                 getSAuthorities(student)):new org.springframework.security.core.userdetails.User(consultant.getUsername(), consultant.getPassword(),

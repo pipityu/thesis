@@ -5,7 +5,7 @@
 
 
 <head>
-    <title>Téma Kiírása</title>
+    <title>Téma módosítása</title>
     <meta charset="utf-8"/>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -47,24 +47,25 @@
         </div>
     </nav>
 </div>
-<form class="form-group createForm"  th:action="@{/createtopic}" method="post">
+<form class="form-group createForm"  th:action="@{/updatetopic}" method="post">
+    <input type="hidden" name="topicid" th:value="${topic.topicid}">
     <div class="p-2">
-        <label class="label">Téma címe</label><input class="form-control" type="text" name="topicname" required />
+        <label class="label">Téma címe</label><input class="form-control" type="text" name="topicname" th:value="${topic.name}" required />
     </div>
     <div class="p-2">
         <label class="label">Téma részletes leírása</label>
-        <textarea class="form-control" required  name="description" rows="10" cols="40"></textarea>
+        <textarea class="form-control" required  name="description" rows="10" cols="40" th:text="${topic.description}"></textarea>
 
     </div>
     <div>
         <div class="insertButton">
-            <button class="btn btn-success" name="login" type="submit">Feltöltés</button>
+            <button class="btn btn-success" name="login" type="submit">Módosítás</button>
         </div>
         <div class="insertButton">
             <a th:href="@{/home}" class="btn btn-info">Vissza</a>
         </div>
     </div>
-    <div class="message" th:text="${successInsert}"></div>
+    <div class="message" th:text="${message}"></div>
 </form>
 </div>
 </body>

@@ -44,9 +44,6 @@ public class UserController {
         return "student/home";
     }
 
-    @GetMapping("/consultant/createtopic")
-    public String createtopic(){
-        return "/consultant/createtopic";
-    }
+
 
 }
