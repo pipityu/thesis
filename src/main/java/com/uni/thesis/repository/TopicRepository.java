@@ -15,6 +15,8 @@ public interface TopicRepository extends JpaRepository<Topic, Integer> {
 
     Topic findTopicByTopicid(int id);
 
+
+
 /*    @Query(value = "insert into topic values(default, ?1, ?2, ?3, ?4)", nativeQuery = true)
     void insertTopic(String consultantid, String name, String description);*/
 

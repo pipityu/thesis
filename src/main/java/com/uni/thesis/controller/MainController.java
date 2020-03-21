@@ -19,4 +19,11 @@ public class MainController {
     public String informations(){
         return "/informations";
     }
+    @GetMapping("/registration")
+    public String registration(){return "/registration";}
+    @GetMapping("/consultantreg")
+    public String consultantreg(){return "/consultantreg";}
+    @GetMapping("/studentreg")
+    public String studentreg(){return "/studentreg";}
+
 }

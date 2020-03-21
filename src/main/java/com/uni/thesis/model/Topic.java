@@ -14,6 +14,8 @@ public class Topic {
     private String name;
     private String description;
     private String status;
+    @OneToOne(mappedBy = "topicid")
+    private Student student;
 
     public Topic(){}
 
@@ -62,5 +64,13 @@ public class Topic {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

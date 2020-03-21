@@ -32,8 +32,8 @@
                     id="neptun" sec:authentication="principal.username"></span></a>
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" th:href="@{/home}">Témáim</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/alltopic}">Összes téma</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/createtopic}" href="/createtopic">Téma kiírás</a>
+                <li class="nav-item"><a class="nav-link" th:href="@{/consultant/alltopic}">Összes téma</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/consultant/createtopic}" href="/createtopic">Téma kiírás</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -61,7 +61,7 @@
             <button class="btn btn-success" name="login" type="submit">Feltöltés</button>
         </div>
         <div class="insertButton">
-            <a th:href="@{/home}" class="btn btn-info">Vissza</a>
+            <a th:href="@{/consultant/home}" class="btn btn-info">Vissza</a>
         </div>
     </div>
     <div class="message" th:text="${successInsert}"></div>

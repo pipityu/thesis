@@ -22,7 +22,7 @@
 <div>
     <div class = "jumbotron jumbotron-fluid">
         <div>
-            <h1 class="welcomeText"><strong>Konzulens bejelentkezés!</strong></h1></br>
+            <h1 class="welcomeText"><strong>Bejelentkezés!</strong></h1></br>
         </div>
 
         <div class = "d-flex justify-content-center p-3 text-white">
@@ -43,14 +43,19 @@
                 </div>
                 <div>
                     <div>
-                        <div id="loginerror" th:if="${param.error}">
+                        <div class="loginerror" th:if="${param.error}">
                             <p>
                                 <span>Érvénytelen felhasználónév vagy jelszó</span>
                             </p>
                         </div>
-                        <div id="successLogOut" th:if="${param.logout}">
+                        <div class="successLogOut" th:if="${param.logout}">
                             <p>
                                 <span>Sikeres kijelentkezés</span>
+                            </p>
+                        </div>
+                        <div class="successLogOut" th:if="${regSuccess == 'true'}">
+                            <p>
+                                <span>Sikeres regisztráció, bejelentkezhetsz</span>
                             </p>
                         </div>
                     </div>

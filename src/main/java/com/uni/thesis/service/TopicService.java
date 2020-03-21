@@ -2,8 +2,10 @@ package com.uni.thesis.service;
 
 
 import com.uni.thesis.model.Consultant;
+import com.uni.thesis.model.Student;
 import com.uni.thesis.model.Topic;
 import com.uni.thesis.repository.ConsultantRepository;
+import com.uni.thesis.repository.StudentRepository;
 import com.uni.thesis.repository.TopicRepository;
 import org.hibernate.exception.DataException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +13,22 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import javax.validation.constraints.Null;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
-@Service
+
 @Transactional
+@Service
 public class TopicService {
 
     @Autowired
     TopicRepository topicRepository;
+
+    @Autowired
+    StudentRepository studentRepository;
 
     @Autowired
     MyUserDetailService myUserDetailService;
@@ -37,10 +45,7 @@ public class TopicService {
         return topicRepository.findTopicByTopicid(id);
     }
 
-/*    public void insertTopic(String consultantid, String name, String description){
-        topicRepository.insertTopic(consultantid,name,description);
 
-    }*/
 
 
 //CÍM ALAPJÁN HA EGYEZÉS VAN AKKOR VISSZATÉRÉS HOGY MÁR VAN ILYEN TÉMA!
@@ -50,7 +55,7 @@ public class TopicService {
         topic.setConsultantid(consultant);
         topic.setName(topicname);
         topic.setDescription(description);
-        topic.setStatus("Választható");
+        topic.setStatus("választható");
         boolean successTopicInsert = false;
         try{
             topicRepository.save(topic);
@@ -89,5 +94,44 @@ public class TopicService {
         }finally {
             return successUpdate;
         }
+    }
+
+    public boolean updateStudentSelectedTopic(int topicid, String username, boolean describe){
+        boolean flag = false;
+        try{
+            Student student = myUserDetailService.loadStudent(username);
+            Topic topic = topicRepository.findTopicByTopicid(topicid);
+            if(describe == false) {
+                topic.setStudent(student);
+                topic.setStatus("folyamatban"); //EZEN A PONTON KELL KÜLDENI REQUESTET A TOPIC TULAJNAK aki elfogadhatja
+                student.setTopicid(topic);
+                topicRepository.save(topic);
+                studentRepository.save(student);
+                flag = true;
+            }else{
+                topic.setStudent(null);
+                student.setTopicid(null);
+                topicRepository.save(topic);
+                studentRepository.save(student);
+                flag = false;
+            }
+            
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            return flag;
+        }
+    }
+
+    public boolean isSelectedTopic(String username){
+        try{
+            Optional<Student> student = studentRepository.findStudentByUsername(username);
+            System.out.println(student.get().getTopicid());
+            return (student.get().getTopicid()==null) ? true : false;
+
+        }catch (NullPointerException n){
+                n.printStackTrace();
+        }
+        return false;
     }
 }

@@ -10,3 +10,16 @@ body {
     font-weight: bolder;
     text-align: center;
 }
+
+.successColor{
+    color: forestgreen;
+    font-weight: bold;
+}
+.errorColor{
+    color: crimson;
+    font-weight: bold;
+}
+.warnColor{
+    color: goldenrod;
+    font-weight: bold;
+}

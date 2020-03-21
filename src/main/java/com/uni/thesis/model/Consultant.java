@@ -23,6 +23,7 @@ public class Consultant{
     @OneToMany(mappedBy = "consultantid")
     private List<Topic> topics;
 
+
     public int getConsultantid() {
         return consultantid;
     }

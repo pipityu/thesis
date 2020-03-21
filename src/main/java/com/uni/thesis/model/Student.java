@@ -14,6 +14,9 @@ public class Student{
     private String name;
     private String email;
     private String password;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "topicid", referencedColumnName = "topicid")
+    private Topic topicid;
     private String faculty;
     private String specialisation;
 
@@ -87,4 +90,11 @@ public class Student{
         this.password = password;
     }
 
+    public Topic getTopicid() {
+        return topicid;
+    }
+
+    public void setTopicid(Topic topicid) {
+        this.topicid = topicid;
+    }
 }

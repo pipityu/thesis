@@ -1,8 +1,8 @@
-#loginerror{
+.loginerror{
     color: crimson;
     font-weight: bold;
 }
-#successLogOut{
+.successLogOut{
     color: forestgreen;
 }
 .container{
@@ -17,19 +17,25 @@
     margin-left: auto;
     margin-right: auto;
 }
-/*.left{
-    margin-top: 2%;
-    width: 15%;
-    float: left;
-    margin-right: 12.5%;
-}
-.right{
-    width: 20%;
-    padding-top: 3%;
-    float: right;
-}*/
 .center{
     width: 50%;
     margin: auto;
+}
 
+.regBtn{
+    width: 35%;
+    height: 100pt;
+    text-align: center;
+}
+.regBtn button{
+    width: 35%;
+    height: 50%;
+    display: inline-block;
+}
+.regBtnBack{
+    margin-top: 1%;
+    display: block;
+}
+.regBtnBack button{
+    width: 70%;
 }

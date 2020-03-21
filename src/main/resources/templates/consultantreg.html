@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Konzulens regisztráció</title>
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+
+    <link th:href="@{/css/bootstrap.css}" href="../static/css/base.css" rel="stylesheet" type="text/css" />
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/popper.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+
+    <link th:href="@{/css/base.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div>
+    <div class = "jumbotron jumbotron-fluid">
+        <div>
+            <h1 class="welcomeText"><strong>Konzulens regisztráció</strong></h1></br>
+        </div>
+
+        <div class = "d-flex justify-content-center p-3 text-white">
+            <div>
+                <form name="loginform" class="form-group" th:action="@{/consultantreg}" method="post">
+                    <div class="p-2 bg-dark">
+                        <label>NEPTUN KÓD</label><input class="form-control" type="text"  required  name="username" placeholder="neptun kód" />
+                    </div>
+                    <div class="p-2 bg-dark">
+                        <label>Teljes név</label><input class="form-control" type="text" required  name="name" placeholder="Teljes név" />
+                    </div>
+                    <div class="p-2 bg-dark">
+                        <label>E-mail</label><input class="form-control" type="email" required  name="email" placeholder="email" />
+                    </div>
+                    <div class="p-2 bg-dark">
+                        <label>Jelszó</label><input class="form-control" type="password" required  name="password" placeholder="Password" />
+                    </div>
+                    <div>
+                        <div>
+                            <button class="btn btn-success" name="login" type="submit">Regisztráció</button>
+                            <a th:href="@{/registration}"><button type="button" class="btn btn-info" name="forgotpassword">Vissza</button></a>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="loginerror" th:if="${regSuccess == 'false'}">
+                                <p>
+                                    <span>Hiba történt</span>
+                                </p>
+                            </div>
+                            <div class="loginerror" th:if="${regSuccess == 'already'}">
+                                <p>
+                                    <span>Már regisztrált a NEPTUN kód!</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="center">
+            <img th:src="@{/img/me_logo.png}" src="">
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
