@@ -3,56 +3,46 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title>Kezdőoldal</title>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
 
 <!--    <link th:href="@{/css/bootstrap.css}" href="../static/css/base.css" rel="stylesheet" type="text/css" />
     <script th:src="@{/js/jquery.js}"></script>
     <script th:src="@{/js/popper.js}"></script>
     <script th:src="@{/js/bootstrap.js}"></script>-->
+
     <link th:href="@{/css/base.css}" href="../static/css/base.css" rel="stylesheet" type="text/css" />
     <link th:href="@{/css/index.css}" href="../static/css/index.css" rel="stylesheet" type="text/css" />
 
 </head>
-<body>
-<div class = "jumbotron jumbotron-fluid">
+<!------------------------------------------------------------------------------------------------------------------------------->
+
+<div class = "content">
+    <div class="contentWrap">
     <div>
         <h1 class="welcomeText"><strong>Szakdolgozat</strong></h1></br>
         <h3 class="welcomeText">Nyilvántartó és menedzselő rendszer</h3></br>
 
         <div id="indexBtn">
-            <a class="btn btn-success btn-block" th:href="@{/login}">Bejelentkezés</a>
-            <a class="btn btn-primary btn-block" th:href="@{/registration}">Regisztráció</a>
-            <a class="btn btn-info btn-block" th:href="@{/informations}">Információk</a>
-            <div id="successLogOut" th:if="${param.logout}">
-                <p>
-                    <span>Sikeres kijelentkezés</span>
-                </p>
-            </div>
+            <a class="btn btn-success btn-block" th:href="@{/login}"><span class="oi oi-account-login"></span> Bejelentkezés</a>
+            <a class="btn btn-primary btn-block" th:href="@{/registration}"><span class="oi oi-pencil"></span> Regisztráció</a>
+            <a class="btn btn-info btn-block" th:href="@{/informations}"><span class="oi oi-info"></span> Információk</a>
         </div>
-
-
     </div>
 
-</div>
+    </div>
+<footer class="footer">
 <div class="container">
-    <!--        <div class="left">
-            <img th:src="@{/img/document.svg}" src="">
-        </div>-->
     <div class="center">
         <img th:src="@{/img/me_logo.png}" src="">
     </div>
-    <!--
-            <div class="right">
-                <img th:src="@{/img/greenkey.svg}" src="">
-            </div>
-    -->
-
 </div>
-
+</footer>
+</div>
 </body>
 </html>

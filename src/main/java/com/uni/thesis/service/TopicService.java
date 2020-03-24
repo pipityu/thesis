@@ -81,9 +81,10 @@ public class TopicService {
         }
     }
 
-    public boolean updateTopic(int topicid, String username, String topicname, String description){
+    public boolean updateTopic(int topicid, String username, String topicname, String description, String status){
         Consultant consultant = myUserDetailService.loadConsultant(username);
-        Topic topic = new Topic(topicid, consultant, topicname, description);
+        Topic topic = new Topic(topicid, consultant, topicname, description, status);
+
         boolean successUpdate = false;
 
         try{
@@ -110,6 +111,7 @@ public class TopicService {
                 flag = true;
             }else{
                 topic.setStudent(null);
+                topic.setStatus("választható");
                 student.setTopicid(null);
                 topicRepository.save(topic);
                 studentRepository.save(student);

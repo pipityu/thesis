@@ -1,25 +1,75 @@
+
 html {
     height: 100%;
-}
-body {
-    min-height: 100%;
     background-color: black;
 }
 
-.welcomeText{
+body {
+    height: 100%;
+    background-color: black;
+}
+
+.navbar {
+    margin-bottom: 3rem;
+}
+
+.content {
+    position: relative;
+    min-height: 100vh;
+    background-color: #E9ECEF;
+    padding-bottom: 5rem;
+}
+
+.contentWrap {
+    padding-bottom: 20rem;
+}
+
+.footer {
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20rem;
+}
+
+.container {
+    width: 100%;
+}
+
+.container img {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center {
+    margin-top: 5rem;
+    width: 100%;
+
+}
+
+.welcomeText {
     font-weight: bolder;
     text-align: center;
 }
 
-.successColor{
+.msg {
+    text-align: center;
+}
+
+.successColor {
     color: forestgreen;
     font-weight: bold;
 }
-.errorColor{
+
+.errorColor {
     color: crimson;
     font-weight: bold;
 }
-.warnColor{
+
+.warnColor {
     color: goldenrod;
     font-weight: bold;
 }

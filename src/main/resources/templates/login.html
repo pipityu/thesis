@@ -5,22 +5,23 @@
 <head>
     <meta charset="utf-8">
     <title>Bejelentkezés</title>
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
 
-    <link th:href="@{/css/bootstrap.css}" href="../static/css/base.css" rel="stylesheet" type="text/css" />
+<!--    <link th:href="@{/css/bootstrap.css}" href="../static/css/base.css" rel="stylesheet" type="text/css" />
     <script th:src="@{/js/jquery.js}"></script>
     <script th:src="@{/js/popper.js}"></script>
-    <script th:src="@{/js/bootstrap.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>-->
 
     <link th:href="@{/css/base.css}" rel="stylesheet" type="text/css" />
     <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div>
-    <div class = "jumbotron jumbotron-fluid">
+<div class = "content">
+    <div class="contentWrap">
         <div>
             <h1 class="welcomeText"><strong>Bejelentkezés!</strong></h1></br>
         </div>
@@ -36,7 +37,7 @@
                 </div>
                 <div>
                     <div>
-                        <button class="btn btn-success" name="login" type="submit">Bejelentkezés</button>
+                        <button class="btn btn-success" name="login" type="submit"><span class="oi oi-account-login"></span> Bejelentkezés</button>
                         <a href="#"><button type="button" class="btn btn-info" name="forgotpassword">Elfelejtett jelszó</button></a>
                         <a href="/"><button type="button" class="btn btn-info" name="forgotpassword">Vissza</button></a>
                     </div>
@@ -49,36 +50,24 @@
                             </p>
                         </div>
                         <div class="successLogOut" th:if="${param.logout}">
-                            <p>
-                                <span>Sikeres kijelentkezés</span>
-                            </p>
+                            <span class="oi oi-check"></span> Sikeres kijelentkezés
                         </div>
                         <div class="successLogOut" th:if="${regSuccess == 'true'}">
-                            <p>
-                                <span>Sikeres regisztráció, bejelentkezhetsz</span>
-                            </p>
+                            <span class="oi oi-check"></span> Sikeres regisztráció, bejelentkezhetsz
                         </div>
                     </div>
                 </div>
             </form>
             </div>
         </div>
-
     </div>
+<footer class="footer">
     <div class="container">
-<!--        <div class="left">
-            <img th:src="@{/img/document.svg}" src="">
-        </div>-->
         <div class="center">
             <img th:src="@{/img/me_logo.png}" src="">
         </div>
-<!--
-        <div class="right">
-            <img th:src="@{/img/greenkey.svg}" src="">
-        </div>
--->
-
     </div>
+</footer>
 
 </div>
 </body>

@@ -57,7 +57,6 @@
         <tr>
             <th>Téma címe</th>
             <th>Státusz</th>
-            <span th:text="${nullTopic}"></span>
             <th></th>
         </tr>
         </thead>
@@ -68,8 +67,16 @@
                 <td th:if="${topic.getStatus() == 'választható'}" class="successColor" th:text="${topic.getStatus()}"></td>
                 <td th:unless="${topic.getStatus() == 'választható'}" class="warnColor" th:text="${topic.getStatus()}"></td>
                 <td><a th:href="@{/student/choosetopic(topicid=(${topic.topicid}))}"><button  class="btn btn-primary">Részletek</button></a></td>
-                <td th:if="${nullTopic == true}"><a th:href="@{/student/selected(topicid=(${topic.topicid}))}"><button  class="btn btn-success">Felvétel</button></a></td>
-                <td th:if="${nullTopic == false}"><button disabled class="btn btn-warning">Már van felvéve</button></td>
+                <td th:if="${nullTopic == true && topic.getStatus() == 'választható'}">
+                    <form th:action="@{/student/selected}" method="post">
+                        <input type="hidden" name="topicid" th:value="${topic.getTopicid()}">
+                        <button type="submit"  class="btn btn-success">Felvétel</button>
+                    </form>
+<!--                    <a th:href="@{/student/selected(topicid=(${topic.topicid}))}">
+                        <button  class="btn btn-success">Felvétel</button>
+                    </a>-->
+                </td>
+                <td th:if="${nullTopic == false}"><button disabled class="btn btn-warning">Van témád</button></td>
             </tr>
         </th:block>
         </tbody>

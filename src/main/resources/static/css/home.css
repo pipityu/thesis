@@ -5,6 +5,9 @@ body{
     background-color: black;
     color: #E9ECEF;
 }
+.navbar a{
+    display: inline;
+}
 #neptun{
     color: goldenrod;
 }
@@ -57,3 +60,86 @@ body{
     margin-right: auto;
     margin-left: auto;
 }
+
+.planningArea{
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.tdBtn{
+    width: 3%;
+}
+
+.statLeft{
+    display: inline-block;
+    margin-top: 2%;
+    width: 15%;
+    margin-left: 16%;
+}
+.statRight{
+    display: inline-block;
+    margin-top: 2%;
+    width: 15%;
+    margin-left: 43%;
+}
+
+.statText{
+    font-size: larger;
+}
+.statLeftData{
+    font-weight: bolder;
+    color: goldenrod;
+}
+.statRightData{
+    font-weight: bolder;
+    color: forestgreen;
+}
+
+.doneStep{
+    opacity: 0.3;
+    background-color: forestgreen;
+    color: #E9ECEF;
+}
+
+.request{
+    display: block;
+    width: 15%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 3%;
+}
+.updateConsultationBtn{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.consultationTable{
+    text-align: center;
+
+}
+
+.tableTitle{
+    margin-top: 5%;
+    margin-bottom: 2%;
+    width: 100%;
+    text-align: center;
+    font-size: 15pt;
+    font-weight: bolder;
+    color: #1e7e34;
+}
+
+.studentTable{
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.dataColor{
+    font-weight: bolder;
+
+}
+.dataTable{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+

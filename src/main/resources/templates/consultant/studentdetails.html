@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<head>
+    <title>Hallgató adatai</title>
+    <meta charset="utf-8"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+
+    <!--<link th:href="@{/static/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+    <script th:src="@{/static/js/jquery.js}"></script>
+    <script th:src="@{/static/js/popper.js}"></script>
+    <script th:src="@{/static/js/bootstrap.js}"></script>
+    <script th:src="@{/js/test.js}"></script>-->
+
+    <link th:href="@{/css/base.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/home.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div class="content">
+    <div class="contentWrap">
+
+        <!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <div>
+            <nav class="navbar navbar-expand-sm navbar-dark">
+                <div class="container-fluid">
+                    <a th:href="@{/home}" class="navbar-brand font-weight-bolder"><strong>THESISMGR: </strong><span
+                            id="neptun" sec:authentication="principal.username"></span></a>
+                    <ul class="navbar-nav navbar-collapse">
+                        <li class="nav-item"><a class="nav-link" th:href="@{/home}">Témáim</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/consultant/alltopic}">Összes téma</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/consultant/createtopic}"
+                                                href="/createtopic">Téma kiírás</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown"><a class=" btn dropdown-toggle nav-link" id="dropdown"
+                                                data-toggle="dropdown">Személyes <span class="oi oi-home"></span></a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#"><span class="oi oi-person"></span> Adatok</a>
+                                <a class="dropdown-item" th:href="@{/logout}" href="/logout"><span
+                                        class="oi oi-account-logout"></span> Kijelentkezés</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <div>
+            <div class="tableTitle">
+                Hallgató adatai
+            </div>
+            <table class="table studentTable">
+                <thead>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="dataColor">Név:</td>
+                    <td th:text="${student.getName()}"></td>
+                </tr>
+                <tr>
+                    <td class="dataColor">Neptun:</td>
+                    <td th:text="${student.getUsername()}"></td>
+                </tr>
+                <tr>
+                    <td class="dataColor">Email:</td>
+                    <td th:text="${student.getEmail()}"></td>
+                </tr>
+                <tr>
+                    <td class="dataColor">Kar:</td>
+                    <td th:text="${student.getFaculty()}"></td>
+                </tr>
+                <tr>
+                    <td class="dataColor">Szak:</td>
+                    <td th:text="${student.getSpecialisation()}"></td>
+                </tr>
+                <tr>
+                    <td class="dataColor">Felvett téma:</td>
+                    <td th:text="${topic.getName()}"></td>
+                </tr>
+                <tr>
+                    <td class="dataColor">Elkészült:</td>
+                    <td th:text="${donePercentage}+' %'"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="tableTitle">
+                Hallgató által meghatározott lépések
+            </div>
+            <table class="dataTable">
+                <thead>
+                <th>Megnevezés</th>
+                <th>Időpont</th>
+                <th>Elfogadás</th>
+                <th>Elutasítás</th>
+                </thead>
+                <tbody th:if="${request}">
+                <td th:text="${request.getName()}"></td>
+                <td th:text="${request.getTime()}"></td>
+                <td>
+                    <form th:action="@{/acceptrequest}" method="post">
+                        <input name="consultationid" type="hidden" th:value="${request.getConsultationid()}">
+                        <input name="topicid" type="hidden" th:value="${topic.getTopicid()}">
+                        <button class="btn btn-success topicButton" type="submit">Elfogadás</button>
+                    </form>
+                    <form th:action="@{/refuserequest}" method="post">
+                        <input name="consultationid" type="hidden" th:value="${request.getConsultationid()}">
+                        <input name="topicid" type="hidden" th:value="${topic.getTopicid()}">
+                        <button class="btn btn-danger topicButton" type="submit"
+                                onclick="return confirm('Biztosan elutasítod?')">Elutasítás
+                        </button>
+                    </form>
+
+                </td>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <div class="tableTitle">
+                Hallgató által meghatározott lépések
+            </div>
+            <table class="table dataTable">
+                <thead>
+                <th>Lépés</th>
+                <th>Leírás</th>
+                <th>Időpont</th>
+                <th>Státusz</th>
+                </thead>
+                <tbody th:if="${steps}">
+                <th:block th:each="step : ${steps}">
+                    <tr>
+                        <td th:text="${step.getName()}"></td>
+                        <td th:text="${step.getDescription()}"></td>
+                        <td th:text="${step.getDeadline()}"></td>
+                        <td th:if="${step.getStepstatus() == 1}"><span class="oi oi-check successColor"></span></td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="center">
+                <img th:src="@{/img/me_logo.png}" src="">
+            </div>
+        </div>
+    </footer>
+
+</div>
+</body>
+</html>

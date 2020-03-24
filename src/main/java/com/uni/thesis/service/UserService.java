@@ -1,11 +1,11 @@
 package com.uni.thesis.service;
 
 
-import com.uni.thesis.model.Consultant;
-import com.uni.thesis.model.ConsultantRole;
+import com.uni.thesis.model.*;
 import com.uni.thesis.repository.ConsultantRepository;
 import com.uni.thesis.repository.ConsultantRoleRepository;
 import com.uni.thesis.repository.StudentRepository;
+import com.uni.thesis.repository.StudentRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,13 @@ public class UserService {
     StudentRepository studentRepository;
 
     @Autowired
+    StudentRoleRepository studentRoleRepository;
+
+    @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    TopicService topicService;
 
 
     public String consultantReg(String username, String name, String email, String password){
@@ -57,6 +63,45 @@ public class UserService {
                 return "false";
             }
         }
+    }
+
+
+    public String studentReg(String username, String name, String email, String faculty, String specialization, String password){
+
+        if(studentRepository.findStudentByUsername(username).isPresent()){
+            return "already";
+        }else{
+            Student student = new Student();
+            student.setUsername(username);
+            student.setName(name);
+            student.setEmail(email);
+            student.setFaculty(faculty);
+            student.setSpecialisation(specialization);
+            String secPassword = passwordEncoder.encode(password);
+            student.setPassword(secPassword);
+            try{
+                student = studentRepository.save(student);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            StudentRole studentRole = new StudentRole();
+            studentRole.setStudent_id(student.getStudentid());
+            studentRole.setRole_id(3);
+            try{
+            studentRoleRepository.save(studentRole);
+                return "true";
+            }catch (Exception e){
+                e.printStackTrace();
+                return "false";
+            }
+        }
+    }
+
+    public Student getStudentDetails(int topicid){
+        Topic topic = topicService.getTopicById(topicid);
+
+        return studentRepository.findStudentByTopicid(topic).get();
     }
 
 }

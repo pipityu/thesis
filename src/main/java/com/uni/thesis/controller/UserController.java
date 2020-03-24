@@ -1,18 +1,16 @@
 package com.uni.thesis.controller;
 
 
-import com.uni.thesis.model.Consultant;
-import com.uni.thesis.model.Student;
-import com.uni.thesis.model.Topic;
+import com.uni.thesis.model.*;
+import com.uni.thesis.repository.ConsultationRepository;
 import com.uni.thesis.service.MyUserDetailService;
+import com.uni.thesis.service.StepService;
 import com.uni.thesis.service.TopicService;
 import com.uni.thesis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -30,6 +28,12 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    StepService stepService;
+
+    @Autowired
+    ConsultationRepository consultationRepository;
+
 //LOGIN SPRING BOOT ALTAL: ONNAN SIKER ESETEN /home -RA DOB
 
 
@@ -46,7 +50,7 @@ public class UserController {
         return "consultant/home";
     }
 
-    @GetMapping("/student/home")
+    @RequestMapping(value = "/student/home", method = {RequestMethod.GET, RequestMethod.POST})
     public String studenthome(Model model, Principal principal){
         Student student = myUserDetailService.loadStudent(principal.getName());
         Boolean nullMsg;
@@ -55,6 +59,23 @@ public class UserController {
             nullMsg = false;
             model.addAttribute("topic", topic);
             model.addAttribute("nullMsg", nullMsg);
+            List<Step>steps = stepService.findAllStepsByTopicId(topic.getTopicid());
+            int stepnumber = steps.size();
+            int sumpercentage = 0;
+            int stepDone = 0;
+            int sumDonePercentage = 0;
+            for (Step s: steps) {
+                sumpercentage+=s.getPercentage();
+                if(s.getStepstatus() == 1){
+                    stepDone++;
+                    sumDonePercentage += s.getPercentage();
+                }
+            }
+            model.addAttribute("stepnumber", stepnumber);
+            model.addAttribute("sumpercentage", sumpercentage);
+            model.addAttribute("stepDone", stepDone);
+            model.addAttribute("sumDonePercentage", sumDonePercentage);
+            model.addAttribute("steps", steps);
         }catch(NullPointerException n){
             nullMsg = true;
             model.addAttribute("nullMsg", nullMsg);
@@ -73,4 +94,40 @@ public class UserController {
         return (success == "true") ? "forward:login" : "/consultantreg";
     }
 
+    //STUDENT
+    @PostMapping("/studentreg")
+    public String consultantReg(@RequestParam String username, String name, String email, String faculty, String specialization, String password, Model model){
+        String success = userService.studentReg(username, name, email, faculty, specialization, password);
+        model.addAttribute("regSuccess", success);
+        return (success == "true") ? "forward:login" : "/consultantreg";
+    }
+
+
+    //------------------------------------OTHER-----------------------------------------
+
+    @GetMapping("/consultant/studentdetails")
+    public String studentDetails(@RequestParam String topicid, Model model){
+        Student student = userService.getStudentDetails(Integer.parseInt(topicid));
+        Topic topic = topicService.getTopicById(Integer.parseInt(topicid));
+        List<Step> steps = stepService.findAllStepsByTopicId(Integer.parseInt(topicid));
+        List<Consultation> consultations = consultationRepository.findAllByTopicid(Integer.parseInt(topicid));
+        for(Consultation c : consultations){
+            if(c.getStatus().compareTo("Elfogadásra vár") == 0){
+                model.addAttribute("request", c);
+                break;
+            }
+        }
+        model.addAttribute("student", student);
+        int stepDone = 0;
+        for(Step step : steps){
+            if(step.getStepstatus()==1) {
+                stepDone += step.getPercentage();
+            }
+        }
+        model.addAttribute("donePercentage", stepDone);
+        model.addAttribute("topic",topic);
+        model.addAttribute("steps", steps);
+
+        return "consultant/studentdetails";
+    }
 }

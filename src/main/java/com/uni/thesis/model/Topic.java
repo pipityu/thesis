@@ -19,11 +19,12 @@ public class Topic {
 
     public Topic(){}
 
-    public Topic(int topicid, Consultant consultant, String name, String description){
+    public Topic(int topicid, Consultant consultant, String name, String description, String status){
         this.topicid = topicid;
         this.consultantid = consultant;
         this.name = name;
         this.description = description;
+        this.status = status;
     }
 
     public int getTopicid() {

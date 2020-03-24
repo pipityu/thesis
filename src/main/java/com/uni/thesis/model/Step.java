@@ -17,6 +17,7 @@ public class Step{
     private String description;
     private LocalDate deadline;
     private int percentage;
+    private int stepstatus;
 
 
     public Step(){}
@@ -67,5 +68,13 @@ public class Step{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getStepstatus() {
+        return stepstatus;
+    }
+
+    public void setStepstatus(int stepstatus) {
+        this.stepstatus = stepstatus;
     }
 }

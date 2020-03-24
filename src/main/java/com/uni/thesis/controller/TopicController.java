@@ -2,6 +2,8 @@ package com.uni.thesis.controller;
 
 
 import com.uni.thesis.model.Topic;
+import com.uni.thesis.service.ConsultationService;
+import com.uni.thesis.service.StepService;
 import com.uni.thesis.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,10 @@ public class TopicController {
 
     @Autowired
     TopicService topicService;
+    @Autowired
+    ConsultationService consultationService;
+    @Autowired
+    StepService stepService;
 
 
 
@@ -76,11 +82,16 @@ public class TopicController {
         return "redirect:consultant/createtopic";
     }
 
+
+    //JELENLEG A FOREIGN KEY NEM ENGEDI TÖRÖLNI HA FEL VAN VÉVE HALLGATÓNÁL A TÉMA!
+    //HA mindenkepp törölni kell akkor eloszor a hallgatotol is törölni kell a temat!!
     @PostMapping("/deletetopic")
-    public String deleteTopic(HttpServletRequest request, Model model){
-        boolean success = topicService.deleteTopic(Integer.parseInt(request.getParameter("topicid")));
-        String successDeleteStr = (success == true)? "Sikeres törlés" : "Hiba a törlésnél";
-        model.addAttribute("successDelete", successDeleteStr);
+    public String deleteTopic(HttpServletRequest request){
+        consultationService.deleteConsultationByTopicId(Integer.parseInt(request.getParameter("topicid")));
+        System.out.println("törölt consultation");
+        stepService.deleteAllstepByTopicId(Integer.parseInt(request.getParameter("topicid")));
+        System.out.println("törölt step");
+        topicService.deleteTopic(Integer.parseInt(request.getParameter("topicid")));
         return "redirect:consultant/home";
     }
 
@@ -96,8 +107,9 @@ public class TopicController {
         String topicname = request.getParameter("topicname");
         String description = request.getParameter("description");
         int topicid = Integer.parseInt(request.getParameter("topicid"));
+        String status = request.getParameter("status");
 
-        boolean successUpdate = topicService.updateTopic(topicid, principal.getName(), topicname, description);
+        boolean successUpdate = topicService.updateTopic(topicid, principal.getName(), topicname, description, status);
         String successUpdateStr = (successUpdate==true) ? "Sikeres módosítás" : "Hiba a módosításnál";
 
         redirectAttributes.addFlashAttribute("topicUpdateMsg", successUpdateStr);
@@ -105,25 +117,24 @@ public class TopicController {
     }
 
 //-------------------------------------------------------STUDENT-----------------------------------------------------------------------------
-    @GetMapping("/student/select")
+    @RequestMapping(value = "/student/select", method = {RequestMethod.GET, RequestMethod.POST})
     public String selectTopic(Model model, Principal principal){
         List<Topic> topics = topicService.getAllTopic();
         boolean topicSelected = topicService.isSelectedTopic(principal.getName());
-        System.out.println(topicSelected);
         model.addAttribute("topics", topics);
         model.addAttribute("nullTopic", topicSelected);
         return "student/select";
     }
 
-    @GetMapping("/student/selected")
-    public String selectedTopic(@RequestParam String topicid, Model model, Principal principal){
+    @PostMapping("/student/selected")
+    public String selectedTopic(@RequestParam String topicid, Principal principal){
         //try
         topicService.updateStudentSelectedTopic(Integer.parseInt(topicid), principal.getName(), false);
-        return "forward:/student/select";
+        return "redirect:/student/select";
     }
 
     @PostMapping("/describe")
-    public String describeTopic(@RequestParam String topicid, Model model, Principal principal){
+    public String describeTopic(@RequestParam String topicid, Principal principal){
         //try
         topicService.updateStudentSelectedTopic(Integer.parseInt(topicid), principal.getName(), true);
         return "redirect:/student/select";
