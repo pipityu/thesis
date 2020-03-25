@@ -90,7 +90,7 @@ public class UserController {
     public String consultantReg(@RequestParam String username, String name, String email, String password, Model model){
         String success = userService.consultantReg(username,name,email,password);
         model.addAttribute("regSuccess", success);
-        return (success == "true") ? "forward:login" : "/consultantreg";
+        return (success == "true") ? "forward:login" : "consultantreg";
     }
 
     //Student registration
@@ -98,7 +98,7 @@ public class UserController {
     public String consultantReg(@RequestParam String username, String name, String email, String faculty, String specialization, String password, Model model){
         String success = userService.studentReg(username, name, email, faculty, specialization, password);
         model.addAttribute("regSuccess", success);
-        return (success == "true") ? "forward:login" : "/consultantreg";
+        return (success == "true") ? "forward:login" : "studentreg";
     }
 
     //Consultant select Student for more information

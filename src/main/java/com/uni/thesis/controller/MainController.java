@@ -22,8 +22,8 @@ public class MainController {
     @GetMapping("/registration")
     public String registration(){return "registration";}
     @GetMapping("/consultantreg")
-    public String consultantreg(){return "/consultantreg";}
+    public String consultantreg(){return "consultantreg";}
     @GetMapping("/studentreg")
-    public String studentreg(){return "/studentreg";}
+    public String studentreg(){return "studentreg";}
 
 }

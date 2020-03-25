@@ -20,21 +20,21 @@ public class StepController {
     public String newStep(@RequestParam int topicid, int stepstatus, String stepname, String stepdescription, String stepdeadline, int steppercentage, Model model){
         boolean success = stepService.saveStep(topicid, stepstatus, stepname, stepdescription, stepdeadline, steppercentage);
         model.addAttribute("successNewStep", success);
-        return "redirect:/student/home";
+        return "redirect:home";
     }
 
     //Student delete a step for a topic
     @GetMapping("/student/deletestep")
     public String deleteStep(@RequestParam int stepid){
         stepService.deleteStep(stepid);
-        return "redirect:/student/home";
+        return "redirect:home";
     }
 
     //Student indicates that the step is already done
     @GetMapping("/student/donestep")
     public String doneStep(@RequestParam int stepid){
         stepService.doneStep(stepid);
-        return "redirect:/student/home";
+        return "redirect:home";
     }
 
 }

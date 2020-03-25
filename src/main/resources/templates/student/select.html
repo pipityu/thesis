@@ -74,7 +74,7 @@
                 <td th:unless="${topic.getStatus() == 'választható'}" class="warnColor" th:text="${topic.getStatus()}"></td>
                 <td><a th:href="@{/student/choosetopic(topicid=(${topic.topicid}))}"><button  class="btn btn-primary"><span class="oi oi-info"></span></button></a></td>
                 <td th:if="${nullTopic == true && topic.getStatus() == 'választható'}">
-                    <form th:action="@{/student/selected}" method="post">
+                    <form th:action="@{/selected}" method="post">
                         <input type="hidden" name="topicid" th:value="${topic.getTopicid()}">
                         <button type="submit"  class="btn btn-success">Felvétel</button>
                     </form>

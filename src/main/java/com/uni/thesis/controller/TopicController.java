@@ -48,7 +48,7 @@ public class TopicController {
         String desc = topic.getDescription();
         model.addAttribute("description", desc);
 
-        return "forward:/consultant/alltopic";
+        return "forward:alltopic";
     }
 
     //Describe the selected topic in the own-topic category
@@ -86,7 +86,7 @@ public class TopicController {
         consultationService.deleteConsultationByTopicId(Integer.parseInt(request.getParameter("topicid")));
         stepService.deleteAllstepByTopicId(Integer.parseInt(request.getParameter("topicid")));
         topicService.deleteTopic(Integer.parseInt(request.getParameter("topicid")));
-        return "redirect:consultant/home";
+        return "redirect:home";
     }
 
     //Consultant updates a topic
@@ -107,7 +107,7 @@ public class TopicController {
         boolean successUpdate = topicService.updateTopic(topicid, principal.getName(), topicname, description, status);
         String successUpdateStr = (successUpdate==true) ? "Sikeres módosítás" : "Hiba a módosításnál";
         redirectAttributes.addFlashAttribute("topicUpdateMsg", successUpdateStr);
-        return "redirect:consultant/home";
+        return "redirect:home";
     }
 
 //-------------------------------------------------------STUDENT-----------------------------------------------------------------------------
@@ -123,10 +123,10 @@ public class TopicController {
     }
 
     //(Student) Handles the selected topic process
-    @PostMapping("/student/selected")
+    @PostMapping("/selected")
     public String selectedTopic(@RequestParam String topicid, Principal principal){
         topicService.updateStudentSelectedTopic(Integer.parseInt(topicid), principal.getName(), false);
-        return "redirect:/student/select";
+        return "redirect:student/select";
     }
 
     //(Student) Handles the describe topic process
@@ -136,7 +136,7 @@ public class TopicController {
         stepService.deleteAllstepByTopicId(Integer.parseInt(topicid));
         consultationService.deleteConsultationByTopicId(Integer.parseInt(topicid));
         topicService.updateStudentSelectedTopic(Integer.parseInt(topicid), principal.getName(), true);
-        return "redirect:/student/select";
+        return "redirect:student/select";
     }
 
     //(Student) Describe the selected topic from all-topic
