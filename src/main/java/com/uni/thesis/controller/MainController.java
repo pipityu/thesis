@@ -15,12 +15,12 @@ public class MainController {
     public String login() {
         return "login";
     }
-    @RequestMapping(value = "/informations", method = RequestMethod.GET)
+    @GetMapping("/informations")
     public String informations(){
-        return "/informations";
+        return "informations";
     }
-    @RequestMapping("/registration")
-    public String registration(){return "/registration";}
+    @GetMapping("/registration")
+    public String registration(){return "registration";}
     @GetMapping("/consultantreg")
     public String consultantreg(){return "/consultantreg";}
     @GetMapping("/studentreg")
