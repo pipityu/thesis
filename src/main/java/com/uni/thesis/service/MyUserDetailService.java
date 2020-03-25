@@ -25,7 +25,8 @@ public class MyUserDetailService implements UserDetailsService {
     @Autowired
     StudentRepository studentRepository;
 
-    @Override  //Felhasználó adatai Spring Securitynek
+    //Get the informations to the Spring Boot, it is NOT return all the datas which are stored in DB(it return a UserDetails OBJ)
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Consultant consultant = null;
         Student student = null;
@@ -43,26 +44,28 @@ public class MyUserDetailService implements UserDetailsService {
 
     }
 
-    //Jogok kikeresése
+    //Get rights to the Consultant
     private static Collection<? extends GrantedAuthority> getCAuthorities(Consultant user) {
         String[] userRoles = user.getConsultantRoles().stream().map((role) -> role.getName()).toArray(String[]::new); // egy tömbbe rakja a role-okat
         Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles);
         return authorities;
     }
 
+    //Get rights to the Student
     private static Collection<? extends GrantedAuthority> getSAuthorities(Student user) {
         String[] userRoles = user.getRoles().stream().map((role) -> role.getName()).toArray(String[]::new); // egy tömbbe rakja a role-okat
         Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles);
         return authorities;
     }
 
-    //Felhasználó adati mert Controllerhez
+    //Get Consultant details which can be used in controllers(UserController login)
     public Consultant loadConsultant(String userName) throws UsernameNotFoundException{
         Consultant consultant = consultantRepository.findConsultantByUsername(userName)
                 .orElseThrow(() -> new UsernameNotFoundException("Email: " + userName + " not found"));
         return consultant;
     }
 
+    //Get Student details which can be used in controllers(UserController login)
     public Student loadStudent(String userName) throws UsernameNotFoundException{
         Student student = studentRepository.findStudentByUsername(userName)
                 .orElseThrow(() -> new UsernameNotFoundException("Email: " + userName + " not found"));

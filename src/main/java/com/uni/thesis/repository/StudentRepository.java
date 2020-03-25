@@ -1,10 +1,8 @@
 package com.uni.thesis.repository;
 
 import com.uni.thesis.model.Student;
-//import com.uni.thesis.model.User;
 import com.uni.thesis.model.Topic;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 

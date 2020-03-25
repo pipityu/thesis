@@ -4,7 +4,6 @@ package com.uni.thesis.service;
 import com.uni.thesis.model.Consultant;
 import com.uni.thesis.model.Student;
 import com.uni.thesis.model.Topic;
-import com.uni.thesis.repository.ConsultantRepository;
 import com.uni.thesis.repository.StudentRepository;
 import com.uni.thesis.repository.TopicRepository;
 import org.hibernate.exception.DataException;
@@ -13,9 +12,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import javax.validation.constraints.Null;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,10 +41,7 @@ public class TopicService {
         return topicRepository.findTopicByTopicid(id);
     }
 
-
-
-
-//CÍM ALAPJÁN HA EGYEZÉS VAN AKKOR VISSZATÉRÉS HOGY MÁR VAN ILYEN TÉMA!
+    //Service for create a new topic (Consultant)
     public boolean insertTopic(String username, String topicname, String description){
         Consultant consultant = myUserDetailService.loadConsultant(username);
         Topic topic = new Topic();
@@ -69,6 +62,7 @@ public class TopicService {
         return  successTopicInsert;
     }
 
+    //Service for delete a topic (Consultant)
     public boolean deleteTopic(int id){
         boolean successDelete = false;
         try{
@@ -81,6 +75,7 @@ public class TopicService {
         }
     }
 
+    //Service for update a topic (Consultant)
     public boolean updateTopic(int topicid, String username, String topicname, String description, String status){
         Consultant consultant = myUserDetailService.loadConsultant(username);
         Topic topic = new Topic(topicid, consultant, topicname, description, status);
@@ -97,6 +92,7 @@ public class TopicService {
         }
     }
 
+    //Service for trigger when Student select a topic
     public boolean updateStudentSelectedTopic(int topicid, String username, boolean describe){
         boolean flag = false;
         try{
@@ -104,7 +100,8 @@ public class TopicService {
             Topic topic = topicRepository.findTopicByTopicid(topicid);
             if(describe == false) {
                 topic.setStudent(student);
-                topic.setStatus("folyamatban"); //EZEN A PONTON KELL KÜLDENI REQUESTET A TOPIC TULAJNAK aki elfogadhatja
+                //should send a request for accept the apply
+                topic.setStatus("folyamatban");
                 student.setTopicid(topic);
                 topicRepository.save(topic);
                 studentRepository.save(student);
@@ -117,7 +114,6 @@ public class TopicService {
                 studentRepository.save(student);
                 flag = false;
             }
-            
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -125,6 +121,7 @@ public class TopicService {
         }
     }
 
+    //Service for indicate if a topic is selected or not by a Student
     public boolean isSelectedTopic(String username){
         try{
             Optional<Student> student = studentRepository.findStudentByUsername(username);

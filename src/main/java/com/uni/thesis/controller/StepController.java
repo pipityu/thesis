@@ -15,6 +15,7 @@ public class StepController {
     @Autowired
     StepService stepService;
 
+    //Student create a new step for a topic
     @PostMapping("/student/newstep")
     public String newStep(@RequestParam int topicid, int stepstatus, String stepname, String stepdescription, String stepdeadline, int steppercentage, Model model){
         boolean success = stepService.saveStep(topicid, stepstatus, stepname, stepdescription, stepdeadline, steppercentage);
@@ -22,12 +23,14 @@ public class StepController {
         return "redirect:/student/home";
     }
 
+    //Student delete a step for a topic
     @GetMapping("/student/deletestep")
     public String deleteStep(@RequestParam int stepid){
         stepService.deleteStep(stepid);
         return "redirect:/student/home";
     }
 
+    //Student indicates that the step is already done
     @GetMapping("/student/donestep")
     public String doneStep(@RequestParam int stepid){
         stepService.doneStep(stepid);

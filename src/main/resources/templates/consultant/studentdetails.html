@@ -96,33 +96,40 @@
             </table>
 
             <div class="tableTitle">
-                Hallgató által meghatározott lépések
+                Aktuális konzultációs kérelem
             </div>
             <table class="dataTable">
                 <thead>
                 <th>Megnevezés</th>
+                <th>Hallgató összefoglalója</th>
                 <th>Időpont</th>
                 <th>Elfogadás</th>
                 <th>Elutasítás</th>
                 </thead>
-                <tbody th:if="${request}">
-                <td th:text="${request.getName()}"></td>
-                <td th:text="${request.getTime()}"></td>
-                <td>
-                    <form th:action="@{/acceptrequest}" method="post">
-                        <input name="consultationid" type="hidden" th:value="${request.getConsultationid()}">
-                        <input name="topicid" type="hidden" th:value="${topic.getTopicid()}">
-                        <button class="btn btn-success topicButton" type="submit">Elfogadás</button>
-                    </form>
-                    <form th:action="@{/refuserequest}" method="post">
-                        <input name="consultationid" type="hidden" th:value="${request.getConsultationid()}">
-                        <input name="topicid" type="hidden" th:value="${topic.getTopicid()}">
-                        <button class="btn btn-danger topicButton" type="submit"
-                                onclick="return confirm('Biztosan elutasítod?')">Elutasítás
-                        </button>
-                    </form>
-
-                </td>
+                <tbody th:if="${consultations}">
+                    <th:block th:each="request : ${consultations}">
+                        <tr>
+                    <td th:text="${request.getName()}"></td>
+                            <td th:text="${request.getDescription()}"></td>
+                    <td th:text="${request.getTime()}"></td>
+                        <td>
+                            <form th:action="@{/acceptrequest}" method="post">
+                                <input name="consultationid" type="hidden" th:value="${request.getConsultationid()}">
+                                <input name="topicid" type="hidden" th:value="${topic.getTopicid()}">
+                                <button th:if="${request.getStatus() == 'Elfogadásra vár'}" class="btn btn-success topicButton" type="submit"><span class="oi oi-circle-check"></span></button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/refuserequest}" method="post">
+                                <input name="consultationid" type="hidden" th:value="${request.getConsultationid()}">
+                                <input name="topicid" type="hidden" th:value="${topic.getTopicid()}">
+                                <button class="btn btn-danger topicButton" type="submit"
+                                        onclick="return confirm('Biztosan elutasítod?')"><span class="oi oi-circle-x"></span>
+                                </button>
+                            </form>
+                        </td>
+                        </tr>
+                    </th:block>
                 </tbody>
             </table>
         </div>

@@ -18,7 +18,7 @@ public class ConsultationService {
     @Autowired
     ConsultationRepository consultationRepository;
 
-
+    //Service for Student send a consultation request
     public boolean sendConsultationRequest(int topicid, String name, String description, String time){
         List<Consultation> consultations = consultationRepository.findAllByTopicid(topicid);
         for(Consultation c : consultations){
@@ -42,18 +42,17 @@ public class ConsultationService {
         }
     }
 
-    public Consultation getConsultation(int consultationid){
-        return consultationRepository.getOne(consultationid);
-    }
-
+    //Service for delete a consultation (Student and Consultant also)
     public void deleteConsultationByTopicId(int topicid){
         consultationRepository.deleteAllByTopicid(topicid);
     }
 
+    //Service for get all consultation (Student and Consultant also)
     public List<Consultation> getAllConsultationByTopicid(int topicid){
         return consultationRepository.findAllByTopicid(topicid);
     }
 
+    //Service for update a consultation (Student)
     public boolean consultationUpdate(int consultationid, String name, String description){
         try{
             Optional<Consultation> con = consultationRepository.findById(consultationid);
@@ -69,6 +68,7 @@ public class ConsultationService {
         }
     }
 
+    //Service for accept a request for a consultation (Consultant)
     public boolean acceptConsultation(int consultationid){
         Optional<Consultation> consultation = consultationRepository.findById(consultationid);
         if(consultation.isPresent()){
@@ -78,6 +78,7 @@ public class ConsultationService {
         return false;
     }
 
+    //Service for refuse a request for a consultation (Consultant)
     public boolean refuseConsultation(int consultationid){
         Optional<Consultation> consultation = consultationRepository.findById(consultationid);
         if(consultation.isPresent()){
@@ -87,10 +88,8 @@ public class ConsultationService {
         return false;
     }
 
+    //Service for delete request for a consultation (Student and Consultant also)
     public void deleteRequest(int consultationid){
         consultationRepository.deleteById(consultationid);
     }
-
-
-
 }

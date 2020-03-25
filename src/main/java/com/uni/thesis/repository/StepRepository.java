@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface StepRepository extends JpaRepository<Step, Integer> {
 
-    public List<Step> findAllByTopicid(int topicid);
+    List<Step> findAllByTopicid(int topicid);
     void deleteAllByTopicid(int topicid);
 }

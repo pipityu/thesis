@@ -16,6 +16,9 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
+.topicButton{
+    width: 20%;
+}
 
 .topicDescription{
     padding: 2% 2% 2% 2%;
@@ -115,6 +118,9 @@ body{
 }
 .consultationTable{
     text-align: center;
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
 
 }
 
@@ -138,7 +144,18 @@ body{
 
 }
 .dataTable{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.dataTable button{
     width: 70%;
+}
+.dataTable th{
+    padding-right: 5rem;
+}
+.errorBtn{
+    width: 10%;
     margin-left: auto;
     margin-right: auto;
 }

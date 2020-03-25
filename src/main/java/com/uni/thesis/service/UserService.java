@@ -34,7 +34,7 @@ public class UserService {
     @Autowired
     TopicService topicService;
 
-
+    //Service for registration a Consultant
     public String consultantReg(String username, String name, String email, String password){
 
         if(consultantRepository.findConsultantByUsername(username).isPresent()){
@@ -65,7 +65,7 @@ public class UserService {
         }
     }
 
-
+    //Service for registration a Student
     public String studentReg(String username, String name, String email, String faculty, String specialization, String password){
 
         if(studentRepository.findStudentByUsername(username).isPresent()){
@@ -98,10 +98,17 @@ public class UserService {
         }
     }
 
+    //Service for get Student details
     public Student getStudentDetails(int topicid){
         Topic topic = topicService.getTopicById(topicid);
-
         return studentRepository.findStudentByTopicid(topic).get();
+    }
+
+    //Service for set topic null when Student described from it
+    public void studentUpdate(int topicid){
+        Student student = studentRepository.findStudentByTopicid(topicService.getTopicById(topicid)).get();
+        student.setTopicid(null);
+        studentRepository.save(student);
     }
 
 }

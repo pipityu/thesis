@@ -1,7 +1,5 @@
 package com.uni.thesis.model;
 
-
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -12,7 +10,7 @@ public class Step{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int stepid;
-    private int topicid; //DB-ben osszekotve(esetleg itt is ossze lehet @ManyToOne)
+    private int topicid;
     private String name;
     private String description;
     private LocalDate deadline;

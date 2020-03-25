@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -34,14 +35,14 @@ public class UserController {
     @Autowired
     ConsultationRepository consultationRepository;
 
-//LOGIN SPRING BOOT ALTAL: ONNAN SIKER ESETEN /home -RA DOB
 
-
+//LOGIN spring boot config: siker-> /home
     @GetMapping("home")
     public String home(HttpServletRequest request){
         return (request.isUserInRole("CONSULTANT")) ? "forward:consultant/home" : "forward:student/home";
     }
 
+    //Consultant Login
     @GetMapping("/consultant/home")
     public String consultanthome(Model model, Principal principal){
         Consultant consultant = myUserDetailService.loadConsultant(principal.getName());
@@ -50,6 +51,7 @@ public class UserController {
         return "consultant/home";
     }
 
+    //Student Login
     @RequestMapping(value = "/student/home", method = {RequestMethod.GET, RequestMethod.POST})
     public String studenthome(Model model, Principal principal){
         Student student = myUserDetailService.loadStudent(principal.getName());
@@ -80,13 +82,10 @@ public class UserController {
             nullMsg = true;
             model.addAttribute("nullMsg", nullMsg);
         }
-
         return "student/home";
     }
 
-
-    //------------------------------------REGISTRATION------------------------------------------
-    //CONSULTANT
+    //Consultant registration
     @PostMapping("/consultantreg")
     public String consultantReg(@RequestParam String username, String name, String email, String password, Model model){
         String success = userService.consultantReg(username,name,email,password);
@@ -94,7 +93,7 @@ public class UserController {
         return (success == "true") ? "forward:login" : "/consultantreg";
     }
 
-    //STUDENT
+    //Student registration
     @PostMapping("/studentreg")
     public String consultantReg(@RequestParam String username, String name, String email, String faculty, String specialization, String password, Model model){
         String success = userService.studentReg(username, name, email, faculty, specialization, password);
@@ -102,21 +101,27 @@ public class UserController {
         return (success == "true") ? "forward:login" : "/consultantreg";
     }
 
-
-    //------------------------------------OTHER-----------------------------------------
-
+    //Consultant select Student for more information
     @GetMapping("/consultant/studentdetails")
     public String studentDetails(@RequestParam String topicid, Model model){
-        Student student = userService.getStudentDetails(Integer.parseInt(topicid));
+        Student student;
+        try{
+            student = userService.getStudentDetails(Integer.parseInt(topicid));
+        }catch(Exception e){
+            e.printStackTrace();
+            return "redirect:home";
+        }
+
         Topic topic = topicService.getTopicById(Integer.parseInt(topicid));
         List<Step> steps = stepService.findAllStepsByTopicId(Integer.parseInt(topicid));
         List<Consultation> consultations = consultationRepository.findAllByTopicid(Integer.parseInt(topicid));
+        List<Consultation> showConsultations = new LinkedList<>();
         for(Consultation c : consultations){
-            if(c.getStatus().compareTo("Elfogadásra vár") == 0){
-                model.addAttribute("request", c);
-                break;
+            if(c.getStatus().compareTo("Elfogadásra vár") == 0 || c.getStatus().compareTo("Elfogadva") == 0){
+                showConsultations.add(c);
             }
         }
+        model.addAttribute("consultations", showConsultations);
         model.addAttribute("student", student);
         int stepDone = 0;
         for(Step step : steps){

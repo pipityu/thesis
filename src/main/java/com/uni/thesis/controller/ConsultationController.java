@@ -17,7 +17,7 @@ public class ConsultationController {
     @Autowired
     ConsultationService consultationService;
 
-
+    //Student click on consultation at home page
     @RequestMapping(value = "/student/consultation", method = {RequestMethod.GET,RequestMethod.POST})
     public String consultation(@RequestParam int topicid, String success, Model model){
         model.addAttribute("topicid", topicid);
@@ -27,6 +27,7 @@ public class ConsultationController {
         return "student/consultation";
     }
 
+    //Student send a request for a consultation
     @PostMapping("/student/consultationrequest")
     public String consultationRequest(@RequestParam int topicid, String name, String description, String time, RedirectAttributes redirectAttributes){
         boolean success = consultationService.sendConsultationRequest(topicid, name, description, time);
@@ -35,6 +36,7 @@ public class ConsultationController {
         return "redirect:consultation";
     }
 
+    //Student update a consultation (for example add a description or change a title)
     @PostMapping("/student/consultationupdate")
     public String consultationUpdate(@RequestParam int topicid, int consultationid, String name, String description, RedirectAttributes redirectAttributes){
         boolean success = consultationService.consultationUpdate(consultationid, name, description);
@@ -43,6 +45,16 @@ public class ConsultationController {
         return "redirect:consultation";
     }
 
+    //Student delete the consultation request (after consultant has accepted it the button will disappear)
+    @PostMapping("/student/deleterequest")
+    public String deleteRequest(@RequestParam int consultationid, int topicid, RedirectAttributes redirectAttributes){
+        consultationService.deleteRequest(consultationid);
+        redirectAttributes.addAttribute("topicid", topicid);
+        return "redirect:consultation";
+        //return "redirect:consultation?topicid="+topicid;
+    }
+
+    //Consultant accept the request for a consultation
     @PostMapping("/acceptrequest")
     public String acceptRequest(@RequestParam int consultationid, int topicid, RedirectAttributes redirectAttributes){
         consultationService.acceptConsultation(consultationid);
@@ -50,19 +62,12 @@ public class ConsultationController {
         return "redirect:consultant/studentdetails";
     }
 
+    //Consultant refuse the request for a consultation
     @PostMapping("/refuserequest")
     public String refuseRequest(@RequestParam int consultationid,  int topicid, RedirectAttributes redirectAttributes){
         consultationService.refuseConsultation(consultationid);
         redirectAttributes.addAttribute("topicid", topicid);
         return "redirect:consultant/studentdetails";
-    }
-
-    @PostMapping("/student/deleterequest")
-    public String deleteRequest(@RequestParam int consultationid, int topicid, RedirectAttributes redirectAttributes){
-        consultationService.deleteRequest(consultationid);
-        redirectAttributes.addAttribute("topicid", topicid);
-        return "redirect:consultation";
-        //return "redirect:consultation?topicid="+topicid;     EZ IS EGY OPCIO
     }
 
 }

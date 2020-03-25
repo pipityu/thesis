@@ -24,7 +24,8 @@
     <script th:src="@{/js/basic.js}" type="text/javascript"></script>
 </head>
 <body>
-<div>
+<div class = "content">
+    <div class="contentWrap">
     <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="container-fluid">
             <a th:href="@{/home}" class="navbar-brand font-weight-bolder brandtitle">
@@ -48,13 +49,10 @@
             </ul>
         </div>
     </nav>
-</div>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-<hr>
 <div class="d-flex justify-content-center">
     <h3>Felvett témám adatai</h3>
 </div>
-<span class="oi oi-icon-name" title="icon name" aria-hidden="true"></span>
 
 <div class="d-flex justify-content-center message" th:text="${updateMsg == true} ? 'Sikeres témaleadás': ''"></div>
 <div th:if="${nullMsg == false}">
@@ -64,6 +62,7 @@
             <th>Téma címe</th>
             <th>Státusz</th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -71,11 +70,11 @@
                 <td th:text="${topic.getName()}"></td>
                 <td th:if="${topic.getStatus() == 'választható'}" class="successColor" th:text="${topic.getStatus()}"></td>
                 <td th:unless="${topic.getStatus() == 'választható'}" class="warnColor" th:text="${topic.getStatus()}"></td>
-                <td><a th:href="@{/student/consultation(topicid=${topic.getTopicid()})}"><button  class="btn btn-info topicButton">Konzultáció</button></a></td>
+                <td class="topicButton"><a th:href="@{/student/consultation(topicid=${topic.getTopicid()})}"><button  class="btn btn-info"><span class="oi oi-people"></span> Konzultáció</button></a></td>
                 <td>
                     <form th:action="@{/describe}" method="post">
                         <input name="topicid" type="hidden" th:value="${topic.topicid}">
-                        <button  class="btn btn-danger topicButton" type="submit" onclick="return confirm('Biztosan le szeretnéd adni a témát?')">Leadás</button>
+                        <button  class="btn btn-danger" type="submit" onclick="return confirm('Biztosan le szeretnéd adni a témát?')"><span class="oi oi-trash"></span></button>
                     </form>
                 </td>
             </tr>
@@ -119,12 +118,12 @@
                                     <label>Határidő</label><input id="datePicker" class="form-control" type="date" required  name="stepdeadline" />
                                 </div>
                                 <div class="p-2">
-                                    <label>%</label><input class="form-control" type="number" required min="1" th:max="100-${sumpercentage}"  name="steppercentage" />
+                                    <label>%</label><input class="form-control" type="number" required min="1" th:max="100-${sumpercentage}"  name="steppercentage" placeholder="ahány %-át kiteszi a lépés a teljes szakdolgozatnak" />
                                 </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary" >Hozzáadás</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Mégse</button>
                         </div>
                     </form>
                 </div>
@@ -141,7 +140,7 @@
             <span class="statLeftData" th:text="${sumpercentage}"></span>
         </div>
         <div class="statRight">
-            <h3>Elvégzett <span class="oi oi-bar-chart"></span></h3>
+            <h3>Elvégzett <span class="oi oi-graph"></span></h3>
             <span class="statText">Összes lépés: </span>
             <span class="statRightData" th:text="${stepDone}"></span><br>
             <span class="statText">Lépések %-a : </span>
@@ -207,8 +206,15 @@
     <input type="file" name="file" /><br/><br/>
     <input type="submit" value="Submit" />
 </form>-->
-
-<div class="d-flex justify-content-center" th:unless="${nullMsg == false}">Még nem vettél fel témát</div>
-<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="d-flex justify-content-center" th:unless="${nullMsg == false}"><span class="oi oi-document"></span> Még nem vettél fel témát</div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="center">
+                <img th:src="@{/img/me_logo.png}" src="">
+            </div>
+        </div>
+    </footer>
+</div>
 </body>
 </html>
