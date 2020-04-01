@@ -1,3 +1,17 @@
+
+/*drop table if exists student_role;
+drop table if exists consultant_role;
+drop table if exists roles;
+drop table if exists thesis;
+drop table if exists student;
+drop table if exists step;
+drop table if exists consultation;
+drop table if exists topic;
+drop table if exists consultant;
+
+
+
+
 create table if not exists consultant(
                                          consultantid int primary key auto_increment not null,
                                          username varchar(100),
@@ -82,4 +96,4 @@ create table if not exists student_role(
 insert ignore into roles (roleid, name) values
 (1, 'ROLE_ADMIN'),
 (2, 'ROLE_CONSULTANT'),
-(3, 'ROLE_STUDENT');
+(3, 'ROLE_STUDENT');*/

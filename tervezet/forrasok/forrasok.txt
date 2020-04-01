@@ -1,4 +1,0 @@
-//https://users.iit.uni-miskolc.hu/~mileff/szf/szf_printable_1.pdf
-https://people.inf.elte.hu/groberto/elte_szt/eloadas_anyagok/elte_szt_ea12_eml.pdf
-https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
-https://javaee.github.io/tutorial/

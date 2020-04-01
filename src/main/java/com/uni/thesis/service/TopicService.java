@@ -125,9 +125,7 @@ public class TopicService {
     public boolean isSelectedTopic(String username){
         try{
             Optional<Student> student = studentRepository.findStudentByUsername(username);
-            System.out.println(student.get().getTopicid());
             return (student.get().getTopicid()==null) ? true : false;
-
         }catch (NullPointerException n){
                 n.printStackTrace();
         }

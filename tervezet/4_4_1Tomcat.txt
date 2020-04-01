@@ -1,7 +1,0 @@
-
-http://tomcat.apache.org/
-Egy webszerver ami Java nyelven készült. Nyílt forráskódú implementációja a Java Servlet, JavaServer Pages, Java Expression Language
-illetve a WebSocket technológiáknak, melyek a Java Community Process alatt voltak fejlesztve.
-
-A Spring Boot alkalmazások alapértelmezetten tartalmaznak egy beágyazott Tomcat webszervert, ami rendelkezik alapbeállításokkal,
-de ha szeretnénk ezek megváltoztathatóak illetve továbbiak beállíthatóak az application.properties fájlon keresztül.

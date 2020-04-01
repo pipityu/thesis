@@ -17,11 +17,11 @@ public class ThesisApplication {
         ApplicationContext ct = SpringApplication.run(ThesisApplication.class, args);
 
         //Container with all the SpringBeans
-        /*String [] arr = ct.getBeanDefinitionNames();
+        String [] arr = ct.getBeanDefinitionNames();
         Arrays.sort(arr);
         for(String name : arr){
             System.out.println(name);
-        }*/
+        }
     }
 
     @Bean

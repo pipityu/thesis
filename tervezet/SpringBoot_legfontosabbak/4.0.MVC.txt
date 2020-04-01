@@ -1,6 +1,0 @@
-MVC(Model, View, Controller)
--Model: Adattárolás, POJO Struktúra
--View: Képek, gombok, formok, grafikus elemek stb
--Controller: 2 részre: Irányírás(controller) és Service(Üzleti logika, számítások).
-
-Rétegek részletezése...

@@ -26,12 +26,70 @@
 <body>
 <div class = "content">
     <div class="contentWrap">
-    A nyilvántartó rendszer azért jött létre, hogy...
+        <h3>A téma nyilvántartó rendszer működése</h3>
+        <hr>
+
+        <h4>A témavezetői oldal</h4>
+        <ul>
+            <li>
+                Témáim: Itt találhatók a saját témák és annak részletei
+            </li>
+            <li>
+                Összes téma: Itt a más témavezetők által kiírt témák találhatók illetve azoknak az adatai
+            </li>
+            <li>
+                Téma kiírás: Ezen az oldalon írhatunk ki új, saját témát
+            </li>
+        </ul>
+
+        <h6>Témáim</h6>
+        <p>A sját témáim lista szerűen jelennek meg.</p>
+        <p>Egy-egy téma:</p>
+        <ul>
+            <li>
+                Megjeleníthető a teljes leírása a kékes sávban.
+            </li>
+            <li>
+                Módosítható a címe és a leírása
+            </li>
+            <li>
+                Törölhető
+            </li>
+        </ul>
+        <p>Ha egy témát felvett egy hallgató, akkor az a téma listában látszik, vagyis megjelenik egy Hallgató link.
+            Erre kattintva a hallgatóról és az általa végzett munkáról kapunk részletesebb leírást.
+            Illetve itt tekinthetjük meg a konzultációs kérelmeket is.</p>
+
+        <h4>Hallgatói oldal</h4>
+        <ul>
+            <li>
+                Témám: Az általam választott téma
+            </li>
+            <li>
+                Kiírt témák: A témavezetők által kiírt összes téma
+            </li>
+            <li>
+                Hasznos információk: A szakdolgozat elkészítéséhez/beadásához tartalmaz fontos információkat és határidőkat.
+            </li>
+        </ul>
+        <h6>Témám</h6>
+        <p>Amíg nem választottunk témát, addig üres. Amint választottunk a téma adatai jelennek meg.
+        Innen küldhetünk konzultációs kérelmet vagy leadhatjuk a témát.</p>
+        <p>Az akcióterv szakaszban lépéseket írhatunk ki magunknak amiket szeretnénk elvégezni a szakdolgozat elkészítése során.
+        Határidőt határozhatunk meg, megadhatjuk az egyes lépések mekkora mértéket tesznek ki a teljes szakdolgozatból.
+            Látjuk mely léppések elvégzettek és melyek vannak még hátra</p>
+
+        <h6>Konzultáció</h6>
+        <p>A konzultációk oldalán tudunk új konzultációt kérelmezni, illetve látjuk az eddigi konzultációinkat.
+        Egyszerre csak egy konzultációs kérelmet enged küldeni a rendszer.</p>
+        <p>A megbeszéltek gomb arra szolgál, hogy a konzultáción elhangzottakat utólag rögzítsük/módosítsuk</p>
+
 
 <div class="regBtnBack">
     <a th:href="@{/}">
         <button type="button" class="btn btn-info" name="forgotpassword">Vissza</button>
     </a>
+</div>
 </div>
 </div>
 <div class="container">

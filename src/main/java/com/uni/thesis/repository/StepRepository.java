@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface StepRepository extends JpaRepository<Step, Integer> {
-
     List<Step> findAllByTopicid(int topicid);
     void deleteAllByTopicid(int topicid);
 }
