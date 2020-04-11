@@ -17,8 +17,7 @@
     <script th:src="@{/js/bootstrap.js}"></script>
     <script th:src="@{/js/test.js}"></script>-->
 
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
     <link th:href="@{/css/base.css}" rel="stylesheet" type="text/css" />
     <link th:href="@{/css/home.css}" rel="stylesheet" type="text/css" />
@@ -78,9 +77,9 @@
                         <div class="p-2">
                             <label>Megnevezés</label><input class="form-control" type="text" required  name="name" />
                         </div>
-                        <div class="p-2">
+<!--                        <div class="p-2">
                             <label>Időpont</label><input id="datePicker" class="form-control" type="date" required  name="time" />
-                        </div>
+                        </div>-->
                     </div>
 
                     <div class="modal-footer">
@@ -91,7 +90,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <div class="msg successColor" th:if="${success}">Kérelem sikeresen elküldve</div>
@@ -116,7 +114,7 @@
                 <td th:if="${consultation.getStatus() == 'Elfogadva'}" class="successColor" th:text="${consultation.getStatus()}"></td>
                 <td th:if="${consultation.getStatus() == 'Elfogadásra vár'}" class="warnColor" th:text="${consultation.getStatus()}"></td>
                 <td th:if="${consultation.getStatus() == 'Elutasítva'}" class="errorColor" th:text="${consultation.getStatus()}"></td>
-                <td th:text="${consultation.getTime()}"></td>
+                <td th:text="${#temporals.format(consultation.getTime(), 'yyy.MM.dd HH:mm')}"></td>
                 <td>
                     <div class="container">
                         <!-- Trigger the modal with a button -->
@@ -169,6 +167,7 @@
         </tbody>
 
     </table>
+</div>
 </div>
     <footer class="footer">
         <div class="container">

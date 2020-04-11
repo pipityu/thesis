@@ -35,7 +35,7 @@ create table if not exists consultation(
                                            name varchar(256),
                                            description varchar(2048),
                                            status varchar(32) not null,
-                                           time date not null,
+                                           time datetime,
                                            foreign key(topicid) references topic(topicid)
 );
 

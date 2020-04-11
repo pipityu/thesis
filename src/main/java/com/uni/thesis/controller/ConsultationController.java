@@ -29,8 +29,8 @@ public class ConsultationController {
 
     //Student send a request for a consultation
     @PostMapping("/student/consultationrequest")
-    public String consultationRequest(@RequestParam int topicid, String name, String description, String time, RedirectAttributes redirectAttributes){
-        boolean success = consultationService.sendConsultationRequest(topicid, name, description, time);
+    public String consultationRequest(@RequestParam int topicid, String name, String description, RedirectAttributes redirectAttributes){
+        boolean success = consultationService.sendConsultationRequest(topicid, name, description);
         redirectAttributes.addAttribute("topicid", topicid);
         redirectAttributes.addAttribute("success", success);
         return "redirect:consultation";
@@ -56,8 +56,8 @@ public class ConsultationController {
 
     //Consultant accept the request for a consultation
     @PostMapping("/acceptrequest")
-    public String acceptRequest(@RequestParam int consultationid, int topicid, RedirectAttributes redirectAttributes){
-        consultationService.acceptConsultation(consultationid);
+    public String acceptRequest(@RequestParam int consultationid, int topicid, String time, RedirectAttributes redirectAttributes){
+        consultationService.acceptConsultation(consultationid, time);
         redirectAttributes.addAttribute("topicid", topicid);
         return "redirect:consultant/studentdetails";
     }

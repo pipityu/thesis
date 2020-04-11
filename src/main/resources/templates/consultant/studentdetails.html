@@ -23,6 +23,7 @@
 
     <link th:href="@{/css/base.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/css/home.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/js/basic.js}" type="text/javascript"></script>
 </head>
 <body>
 
@@ -111,15 +112,45 @@
                         <tr>
                     <td th:text="${request.getName()}"></td>
                             <td th:text="${request.getDescription()}"></td>
-                    <td th:text="${request.getTime()}"></td>
+                    <td th:text="${#temporals.format(request.getTime(), 'yyy.MM.dd HH:mm')}"></td>
                         <td>
-                            <form th:action="@{/acceptrequest}" method="post">
-                                <input name="consultationid" type="hidden" th:value="${request.getConsultationid()}">
-                                <input name="topicid" type="hidden" th:value="${topic.getTopicid()}">
-                                <button th:if="${request.getStatus() == 'Elfogadásra vár'}" class="btn btn-success topicButton" type="submit"><span class="oi oi-circle-check"></span></button>
-                            </form>
+                            <div class="container-fluid">
+                                <!-- Trigger the modal with a button -->
+                                <div>
+                                    <button th:if="${request.getStatus() == 'Elfogadásra vár'}" type="button" class="btn btn-success topicButton" data-toggle="modal" data-target="#accept"><span class="oi oi-circle-check"></span></button>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="accept" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4>Időpont meghatározás</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <form th:action="@{/acceptrequest}" class="form-group" method="post">
+                                                <div class="modal-body">
+                                                    <input name="consultationid" type="hidden" th:value="${request.getConsultationid()}">
+                                                    <input name="topicid" type="hidden" th:value="${topic.getTopicid()}">
+                                                    <div class="p-2">
+                                                        <label>Időpont</label><input id="datePicker" class="form-control" type="datetime-local" required  name="time" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary" >Küldés</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Bezárás</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </td>
                         <td>
+                            <div class="container-fluid">
                             <form th:action="@{/refuserequest}" method="post">
                                 <input name="consultationid" type="hidden" th:value="${request.getConsultationid()}">
                                 <input name="topicid" type="hidden" th:value="${topic.getTopicid()}">
@@ -127,6 +158,7 @@
                                         onclick="return confirm('Biztosan elutasítod?')"><span class="oi oi-circle-x"></span>
                                 </button>
                             </form>
+                            </div>
                         </td>
                         </tr>
                     </th:block>

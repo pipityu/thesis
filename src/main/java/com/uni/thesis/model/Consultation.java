@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Consultation {
@@ -15,7 +15,7 @@ public class Consultation {
     private String name;
     private String description;
     private String status;
-    private LocalDate time;
+    private LocalDateTime time;
 
     public int getConsultationid() {
         return consultationid;
@@ -57,11 +57,11 @@ public class Consultation {
         this.status = status;
     }
 
-    public LocalDate getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(LocalDate time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 }

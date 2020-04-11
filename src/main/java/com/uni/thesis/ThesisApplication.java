@@ -19,9 +19,9 @@ public class ThesisApplication {
         //Container with all the SpringBeans
         String [] arr = ct.getBeanDefinitionNames();
         Arrays.sort(arr);
-        for(String name : arr){
+       /* for(String name : arr){
             System.out.println(name);
-        }
+        }*/
     }
 
     @Bean

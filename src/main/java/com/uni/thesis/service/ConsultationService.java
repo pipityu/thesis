@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +20,7 @@ public class ConsultationService {
     ConsultationRepository consultationRepository;
 
     //Service for Student send a consultation request
-    public boolean sendConsultationRequest(int topicid, String name, String description, String time){
+    public boolean sendConsultationRequest(int topicid, String name, String description){
         List<Consultation> consultations = consultationRepository.findAllByTopicid(topicid);
         for(Consultation c : consultations){
             if(c.getStatus().compareTo("Elfogadásra vár") == 0){
@@ -33,7 +34,7 @@ public class ConsultationService {
             consultation.setName(name);
             consultation.setDescription(description);
             consultation.setStatus("Elfogadásra vár");
-            consultation.setTime(LocalDate.parse(time));
+           // consultation.setTime(LocalDate.parse(time));
             consultationRepository.save(consultation);
             return true;
         }catch (Exception e){
@@ -69,9 +70,10 @@ public class ConsultationService {
     }
 
     //Service for accept a request for a consultation (Consultant)
-    public boolean acceptConsultation(int consultationid){
+    public boolean acceptConsultation(int consultationid, String time){
         Optional<Consultation> consultation = consultationRepository.findById(consultationid);
         if(consultation.isPresent()){
+            consultation.get().setTime(LocalDateTime.parse(time));
             consultation.get().setStatus("Elfogadva");
             return true;
         }
