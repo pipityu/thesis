@@ -57,6 +57,7 @@
             </nav>
         </div>
         <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
         <div>
             <div class="tableTitle">
                 Hallgató adatai
@@ -93,8 +94,70 @@
                     <td class="dataColor">Elkészült:</td>
                     <td th:text="${donePercentage}+' %'"></td>
                 </tr>
+                <tr>
+                    <td>fájlnév</td>
+                    <td><a th:href="@{/download(file=${topic.getStudent().getUsername()})}" download>Letöltés</a></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div>
+                            <!-- Trigger the modal with a button -->
+                            <div>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newfile">Kiírási dokumentum generálása</button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="newfile" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Adatok</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <form th:action="@{/newfile}" class="form-group" method="post">
+                                            <div class="modal-body">
+                                                <input name="topicid" type="hidden" th:value="${topic.getTopicid()}">
+                                                <div class="p-2">
+                                                    <label>Tervezés tárgyköre</label><input class="form-control" name="subject" type="text">
+                                                </div>
+                                                <div class="p-2">
+                                                    <label>Tervezésvezető tanszék, beosztás</label><input class="form-control" name="leader" type="text">
+                                                </div>
+                                                <div class="p-2">
+                                                    <label>Konzulens tanszék, beosztás</label><input class="form-control" name="cdepartment" type="text">
+                                                </div>
+                                                <div class="p-2">
+                                                    <label>Szakdolgozat kiadás dátuma</label><input class="form-control" name="thesisrelease" type="date">
+                                                </div>
+                                                <div class="p-2">
+                                                    <label>Szakdolgozat beadási határidő</label><input class="form-control" name="thesisdeadline" type="date">
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" >Generálás</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Bezárás</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
+            <div class="successColor textCenter" th:if="${success == '0'}">Sikeres generálás</div>
+            <div class="warnColor textCenter" th:if="${success == '1'}">Már létezik</div>
+            <div class="errorColor textCenter" th:if="${success == '2'}">Hiba történt</div>
+
+
+
+
+
+
+
 
             <div class="tableTitle">
                 Aktuális konzultációs kérelem

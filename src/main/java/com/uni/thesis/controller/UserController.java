@@ -103,7 +103,7 @@ public class UserController {
 
     //Consultant select Student for more information
     @GetMapping("/consultant/studentdetails")
-    public String studentDetails(@RequestParam String topicid, Model model){
+    public String studentDetails(@RequestParam String topicid, Model model, @ModelAttribute("success") String success){
         Student student;
         try{
             student = userService.getStudentDetails(Integer.parseInt(topicid));
@@ -132,6 +132,7 @@ public class UserController {
         model.addAttribute("donePercentage", stepDone);
         model.addAttribute("topic",topic);
         model.addAttribute("steps", steps);
+        model.addAttribute("success",success);
 
         return "consultant/studentdetails";
     }

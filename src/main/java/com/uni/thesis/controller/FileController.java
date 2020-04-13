@@ -1,42 +1,50 @@
-/*
 package com.uni.thesis.controller;
 
 
+import com.uni.thesis.service.FileService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 
-
-//-------------------------FILE FELTOLTESE KIJELOLT HELYRE------------------------------------------
 @Controller
 public class FileController {
-    private static String FOLDER = "C:\\Users\\pipit\\IdeaProjects\\thesis\\src\\main\\resources\\files\\"; //RELATIV UTVONAL KELL!
 
-    @PostMapping("/stepupload")
-    private String singleFileUpload(@RequestParam MultipartFile file, RedirectAttributes redirectAttributes){
-        if(file.isEmpty()){
-            redirectAttributes.addFlashAttribute("nullFile", "Nem választottál ki fájlt!");
-            return "redirect:student/home";
-        }
-        try{
-            byte[] fileBytes = file.getBytes();
-            Path path = Paths.get(FOLDER+file.getOriginalFilename());
-            Files.write(path,fileBytes);
-            redirectAttributes.addFlashAttribute("message", "Sikeresen feltöltötted a fájlt: '" + file.getOriginalFilename() + "'");
+    @Autowired
+    FileService fileService;
 
-        }catch(IOException io){
-            io.printStackTrace();
-        }
-        return "redirect:student/home";
-    }
+    @PostMapping("/newfile")
+    public String newFile(@RequestParam String topicid, String subject, String leader, String cdepartment, String thesisrelease, String thesisdeadline, RedirectAttributes redirectAttributes, Model model){
+        int success = fileService.changeText(Integer.parseInt(topicid), subject, leader, cdepartment, thesisrelease, thesisdeadline);
+        redirectAttributes.addAttribute("topicid", topicid);
+        redirectAttributes.addFlashAttribute("success", success);
+
+    return "redirect:consultant/studentdetails";
 }
-*/
+
+    @GetMapping(value = "/download", produces = "application/octet-stream")
+    public ResponseEntity<ByteArrayResource> download(@RequestParam String file){
+        return fileService.download(file);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

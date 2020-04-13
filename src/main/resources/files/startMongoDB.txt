@@ -1,3 +1,0 @@
-mongod --dbpath "D:\egyetem\6.félév\webtech2\project\mongodb\data"
-
-cd egyetem\6.félév\webtech2\project\beadando
