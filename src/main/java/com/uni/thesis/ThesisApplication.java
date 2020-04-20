@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class ThesisApplication {
 
     public static void main(String[] args) {
-
+        //System.setProperty("server.servlet.context-path", "/");
         ApplicationContext ct = SpringApplication.run(ThesisApplication.class, args);
 
         //Container with all the SpringBeans

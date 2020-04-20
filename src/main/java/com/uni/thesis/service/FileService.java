@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -78,8 +79,7 @@ public class FileService {
         }
 
         try {
-            Path newFilePath = Paths.get("D:/egyetem/thesisfiles/"+student.getUsername()+".docx");
-            Files.createFile(newFilePath);
+            File newFilePath = new File("../"+student.getUsername()+".docx");
             fout = new FileOutputStream(newFilePath.toString());
             document.write(fout);
             fout.close();
@@ -153,7 +153,7 @@ public class FileService {
     }
 
     public ResponseEntity<ByteArrayResource> download(String file){
-        Path sourcepath = Paths.get("D:/egyetem/thesisfiles/"+file+".docx");
+        Path sourcepath = Paths.get("../"+file+".docx");
         try{
             byte[] data = Files.readAllBytes(sourcepath);
             ByteArrayResource resource = new ByteArrayResource(data);
