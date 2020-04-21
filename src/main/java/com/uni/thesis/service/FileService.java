@@ -78,13 +78,13 @@ public class FileService {
             }
         }
 
-        File dir = new File("/genfiles/");
+        File dir = new File("/tmp/genfiles/");
         if(!dir.exists()){
             dir.mkdir();
         }
         try {
 
-            File newFilePath = new File("/genfiles/"+student.getUsername()+".docx");
+            File newFilePath = new File("/tmp/genfiles/"+student.getUsername()+".docx");
             fout = new FileOutputStream(newFilePath.toString());
             document.write(fout);
             fout.close();
@@ -158,7 +158,7 @@ public class FileService {
     }
 
     public ResponseEntity<ByteArrayResource> download(String file){
-        Path sourcepath = Paths.get("/genfiles/"+file+".docx");
+        Path sourcepath = Paths.get("/tmp/genfiles/"+file+".docx");
         try{
             byte[] data = Files.readAllBytes(sourcepath);
             ByteArrayResource resource = new ByteArrayResource(data);
