@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.uni</groupId>
     <artifactId>thesis</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>thesisapp</version>
     <name>thesis</name>
     <description>Implementation of my thesis</description>
 
